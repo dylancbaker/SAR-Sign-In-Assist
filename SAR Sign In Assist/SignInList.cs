@@ -107,7 +107,7 @@ namespace SAR_Sign_In_Assist
         private void btnQRScannerHelp_Click(object sender, EventArgs e)
         {
             HelpInfo info = new HelpInfo();
-            if (info.loadByTopic("MemberStatusQRScanner"))
+            if (info.loadByTopic("SignInAssist-Activity"))
             {
                 using (BasicHelpInfo help = new BasicHelpInfo())
                 {

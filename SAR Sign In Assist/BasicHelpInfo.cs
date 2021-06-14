@@ -40,5 +40,18 @@ namespace SAR_Sign_In_Assist
                 System.Diagnostics.Process.Start(MoreInfoURL);
             }
         }
+
+        private void btnOK_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnMoreInfo_Click_1(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(MoreInfoURL))
+            {
+                System.Diagnostics.Process.Start(MoreInfoURL);
+            }
+        }
     }
 }

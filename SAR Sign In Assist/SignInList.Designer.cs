@@ -72,7 +72,13 @@ namespace SAR_Sign_In_Assist
             this.colSignInTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTimeOutRequest = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlFilter = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnQRScannerHelp = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.btnExpandFilterSort = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -206,7 +212,7 @@ namespace SAR_Sign_In_Assist
             this.dgvSignInRecords.ReadOnly = true;
             this.dgvSignInRecords.RowHeadersVisible = false;
             this.dgvSignInRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSignInRecords.Size = new System.Drawing.Size(686, 426);
+            this.dgvSignInRecords.Size = new System.Drawing.Size(686, 501);
             this.dgvSignInRecords.TabIndex = 1;
             // 
             // splitContainer1
@@ -223,6 +229,9 @@ namespace SAR_Sign_In_Assist
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button6);
+            this.splitContainer1.Panel2.Controls.Add(this.button7);
+            this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Panel2.Controls.Add(this.pnlFilter);
             this.splitContainer1.Panel2.Controls.Add(this.button2);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
@@ -230,7 +239,7 @@ namespace SAR_Sign_In_Assist
             this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Panel2.Controls.Add(this.btnBulkSignIn);
             this.splitContainer1.Panel2.Controls.Add(this.btnSignIn);
-            this.splitContainer1.Size = new System.Drawing.Size(979, 426);
+            this.splitContainer1.Size = new System.Drawing.Size(979, 501);
             this.splitContainer1.SplitterDistance = 686;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -252,7 +261,7 @@ namespace SAR_Sign_In_Assist
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(979, 528);
+            this.splitContainer2.Size = new System.Drawing.Size(979, 603);
             this.splitContainer2.SplitterDistance = 47;
             this.splitContainer2.TabIndex = 3;
             // 
@@ -261,7 +270,7 @@ namespace SAR_Sign_In_Assist
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(8, 71);
+            this.label6.Location = new System.Drawing.Point(9, 75);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(264, 29);
             this.label6.TabIndex = 14;
@@ -272,7 +281,7 @@ namespace SAR_Sign_In_Assist
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 244);
+            this.label1.Location = new System.Drawing.Point(9, 217);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(274, 29);
             this.label1.TabIndex = 16;
@@ -446,10 +455,13 @@ namespace SAR_Sign_In_Assist
             // 
             // splitContainer3.Panel2
             // 
+            this.splitContainer3.Panel2.Controls.Add(this.button5);
+            this.splitContainer3.Panel2.Controls.Add(this.button4);
+            this.splitContainer3.Panel2.Controls.Add(this.button3);
             this.splitContainer3.Panel2.Controls.Add(this.btnSendSelected);
             this.splitContainer3.Panel2.Controls.Add(this.btnRequestUpdates);
-            this.splitContainer3.Size = new System.Drawing.Size(979, 477);
-            this.splitContainer3.SplitterDistance = 426;
+            this.splitContainer3.Size = new System.Drawing.Size(979, 552);
+            this.splitContainer3.SplitterDistance = 501;
             this.splitContainer3.TabIndex = 3;
             // 
             // label4
@@ -527,13 +539,51 @@ namespace SAR_Sign_In_Assist
             this.pnlFilter.Controls.Add(this.grpTo);
             this.pnlFilter.Location = new System.Drawing.Point(8, 3);
             this.pnlFilter.Name = "pnlFilter";
-            this.pnlFilter.Size = new System.Drawing.Size(274, 327);
+            this.pnlFilter.Size = new System.Drawing.Size(274, 65);
             this.pnlFilter.TabIndex = 25;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(7, 2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 41);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "View";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(88, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 41);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "Edit";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(169, 2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 41);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "Hide";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(4, 360);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(274, 29);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Report";
             // 
             // btnQRScannerHelp
             // 
             this.btnQRScannerHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnQRScannerHelp.BackgroundImage = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_931_speech_bubble_question;
+            this.btnQRScannerHelp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnQRScannerHelp.BackgroundImage")));
             this.btnQRScannerHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnQRScannerHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQRScannerHelp.Location = new System.Drawing.Point(944, 9);
@@ -543,11 +593,39 @@ namespace SAR_Sign_In_Assist
             this.btnQRScannerHelp.UseVisualStyleBackColor = true;
             this.btnQRScannerHelp.Click += new System.EventHandler(this.btnQRScannerHelp_Click);
             // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_filetypes_9_file_spreadsheet;
+            this.button6.Location = new System.Drawing.Point(9, 448);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(269, 50);
+            this.button6.TabIndex = 28;
+            this.button6.Text = "Export to CSV";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button7.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_16_print;
+            this.button7.Location = new System.Drawing.Point(9, 392);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(269, 50);
+            this.button7.TabIndex = 27;
+            this.button7.Text = "Print Selected";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button7.UseVisualStyleBackColor = true;
+            // 
             // btnExpandFilterSort
             // 
             this.btnExpandFilterSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExpandFilterSort.BackColor = System.Drawing.Color.LightGray;
-            this.btnExpandFilterSort.BackgroundImage = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_221_chevron_down_3x;
+            this.btnExpandFilterSort.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExpandFilterSort.BackgroundImage")));
             this.btnExpandFilterSort.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnExpandFilterSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExpandFilterSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -563,10 +641,10 @@ namespace SAR_Sign_In_Assist
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_966_layers_minus;
-            this.button2.Location = new System.Drawing.Point(8, 348);
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(9, 307);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(269, 66);
+            this.button2.Size = new System.Drawing.Size(269, 50);
             this.button2.TabIndex = 18;
             this.button2.Text = "Sign Out All";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -577,10 +655,10 @@ namespace SAR_Sign_In_Assist
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_432_log_out;
-            this.button1.Location = new System.Drawing.Point(8, 276);
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(9, 251);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(269, 66);
+            this.button1.Size = new System.Drawing.Size(269, 50);
             this.button1.TabIndex = 17;
             this.button1.Text = "Sign Out Selected";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -591,10 +669,10 @@ namespace SAR_Sign_In_Assist
             // 
             this.btnBulkSignIn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBulkSignIn.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_965_layers_plus;
-            this.btnBulkSignIn.Location = new System.Drawing.Point(8, 175);
+            this.btnBulkSignIn.Image = ((System.Drawing.Image)(resources.GetObject("btnBulkSignIn.Image")));
+            this.btnBulkSignIn.Location = new System.Drawing.Point(10, 163);
             this.btnBulkSignIn.Name = "btnBulkSignIn";
-            this.btnBulkSignIn.Size = new System.Drawing.Size(269, 66);
+            this.btnBulkSignIn.Size = new System.Drawing.Size(269, 50);
             this.btnBulkSignIn.TabIndex = 15;
             this.btnBulkSignIn.Text = "Bulk Sign In";
             this.btnBulkSignIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -605,10 +683,10 @@ namespace SAR_Sign_In_Assist
             // 
             this.btnSignIn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSignIn.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_431_log_in;
-            this.btnSignIn.Location = new System.Drawing.Point(8, 103);
+            this.btnSignIn.Image = ((System.Drawing.Image)(resources.GetObject("btnSignIn.Image")));
+            this.btnSignIn.Location = new System.Drawing.Point(9, 107);
             this.btnSignIn.Name = "btnSignIn";
-            this.btnSignIn.Size = new System.Drawing.Size(269, 66);
+            this.btnSignIn.Size = new System.Drawing.Size(269, 50);
             this.btnSignIn.TabIndex = 13;
             this.btnSignIn.Text = "Sign In";
             this.btnSignIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -618,7 +696,7 @@ namespace SAR_Sign_In_Assist
             // btnSendSelected
             // 
             this.btnSendSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSendSelected.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_301_square_upload;
+            this.btnSendSelected.Image = ((System.Drawing.Image)(resources.GetObject("btnSendSelected.Image")));
             this.btnSendSelected.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSendSelected.Location = new System.Drawing.Point(422, 3);
             this.btnSendSelected.Name = "btnSendSelected";
@@ -631,7 +709,7 @@ namespace SAR_Sign_In_Assist
             // btnRequestUpdates
             // 
             this.btnRequestUpdates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRequestUpdates.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_302_square_download;
+            this.btnRequestUpdates.Image = ((System.Drawing.Image)(resources.GetObject("btnRequestUpdates.Image")));
             this.btnRequestUpdates.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRequestUpdates.Location = new System.Drawing.Point(684, 3);
             this.btnRequestUpdates.Name = "btnRequestUpdates";
@@ -645,16 +723,16 @@ namespace SAR_Sign_In_Assist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(979, 561);
+            this.ClientSize = new System.Drawing.Size(979, 636);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.MinimumSize = new System.Drawing.Size(995, 600);
+            this.MinimumSize = new System.Drawing.Size(995, 675);
             this.Name = "SignInList";
-            this.Text = "SignInList";
+            this.Text = "Member Sign-Ins";
             this.Load += new System.EventHandler(this.SignInList_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -734,5 +812,11 @@ namespace SAR_Sign_In_Assist
         private System.Windows.Forms.Panel pnlFilter;
         private System.Windows.Forms.Button btnQRScannerHelp;
         private System.Windows.Forms.Button btnExpandFilterSort;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
     }
 }

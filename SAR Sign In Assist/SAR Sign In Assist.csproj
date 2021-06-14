@@ -51,8 +51,9 @@
     <ApplicationIcon>sar_sign_in_assist_logo_IDE_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICAClassLibrary">
-      <HintPath>..\..\SAR ICS Form Helper\SARICSHelperClasses\bin\Debug\ICAClassLibrary.dll</HintPath>
+    <Reference Include="ICAClassLibrary, Version=6.14.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SAR ICS Form Helper\SAR ICS Form Helper\bin\Debug\ICAClassLibrary.dll</HintPath>
     </Reference>
     <Reference Include="NetworkCommsDotNet, Version=3.0.0.0, Culture=neutral, PublicKeyToken=f58108eb6480f6ec, processorArchitecture=MSIL">
       <HintPath>..\packages\NetworkCommsDotNet.3.0.3\lib\NetworkCommsDotNet.dll</HintPath>
@@ -156,6 +157,9 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\glyphicons-filetypes-9-file-spreadsheet.png" />
+    <None Include="Resources\glyphicons-filetypes-9-file-spreadsheet%403x.png" />
+    <None Include="Resources\glyphicons-basic-16-print.png" />
     <None Include="Resources\glyphicons-basic-222-chevron-up%403x.png" />
     <None Include="Resources\glyphicons-basic-221-chevron-down%403x.png" />
     <None Include="Resources\glyphicons-basic-221-chevron-down.png" />

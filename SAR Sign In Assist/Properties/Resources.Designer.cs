@@ -63,6 +63,16 @@ namespace SAR_Sign_In_Assist.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_basic_16_print {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-basic-16-print", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap glyphicons_basic_221_chevron_down {
             get {
                 object obj = ResourceManager.GetObject("glyphicons-basic-221-chevron-down", resourceCulture);
@@ -166,6 +176,26 @@ namespace SAR_Sign_In_Assist.Properties {
         internal static System.Drawing.Bitmap glyphicons_basic_976_globe_data {
             get {
                 object obj = ResourceManager.GetObject("glyphicons-basic-976-globe-data", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_filetypes_9_file_spreadsheet {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-filetypes-9-file-spreadsheet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_filetypes_9_file_spreadsheet_3x {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-filetypes-9-file-spreadsheet@3x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
