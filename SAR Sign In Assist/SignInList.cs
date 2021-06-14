@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ICAClassLibrary;
 using ICAClassLibrary.Models;
+using SAR_Sign_In_Assist.Models;
 
 namespace SAR_Sign_In_Assist
 {
@@ -39,6 +40,22 @@ namespace SAR_Sign_In_Assist
 
             togglePanel(pnlFilter, btnExpandFilterSort, pnlFilterMaxHeight, true);
 
+            updateSignInList();
+
+        }
+
+        private void updateSignInList()
+        {
+            dgvSignInRecords.AutoGenerateColumns = false;
+            DateTime endDate = DateTime.Now;
+            DateTime startDate = endDate.AddHours(-24);
+            
+            if (rbFromDate.Checked) { startDate = datFromDate.Value; }
+            if (rbToDate.Checked) { endDate = datToDate.Value; }
+            Organization org = (Organization)cboSARGroup.SelectedItem;
+
+            dgvSignInRecords.DataSource = null;
+            dgvSignInRecords.DataSource = Program.signInListService.GetSignInRecords(startDate, endDate, false, false, org.OrganizationID);
         }
 
        
@@ -145,6 +162,103 @@ namespace SAR_Sign_In_Assist
         private void label2_Click(object sender, EventArgs e)
         {
             togglePanel(pnlFilter, btnExpandFilterSort, pnlFilterMaxHeight, false);
+        }
+
+
+
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            using (SignInMemberForm signInMemberForm = new SignInMemberForm())
+            {
+                signInMemberForm.ActivityName = txtCurrentActivity.Text;
+                DialogResult dr = signInMemberForm.ShowDialog(this);
+                if (dr == DialogResult.OK) { updateSignInList(); }
+            }
+        }
+
+        void SignInMemberForm_Closed(object sender, FormClosedEventArgs e)
+        {
+
+            //setNumberOfTeamAssignments();
+
+           
+        }
+
+        private void cboSARGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateSignInList();
+        }
+
+        private void rbToDate_CheckedChanged(object sender, EventArgs e)
+        {
+            updateSignInList();
+        }
+
+        private void rbFromDate_CheckedChanged(object sender, EventArgs e)
+        {
+            updateSignInList();
+        }
+
+        private void rbFromLast24_CheckedChanged(object sender, EventArgs e)
+        {
+            updateSignInList();
+        }
+
+        private void rbToNow_CheckedChanged(object sender, EventArgs e)
+        {
+            updateSignInList();
+        }
+
+        private void dgvSignInRecords_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if(dgvSignInRecords.Rows.Count > 0 && e.RowIndex <= dgvSignInRecords.Rows.Count && dgvSignInRecords.Rows[e.RowIndex] != null)
+            {
+                DataGridViewRow row = dgvSignInRecords.Rows[e.RowIndex];
+
+                GeneralSignInRecord record = (GeneralSignInRecord)row.DataBoundItem;
+
+
+                if (!record.IsSignIn)// Or your condition 
+                {
+                    foreach (DataGridViewCell c in row.Cells)
+                    {
+                        c.Style.BackColor = Color.LightGray;
+                        c.Style.ForeColor = Color.DarkGray;
+                    }
+
+                }
+                
+
+                if(record.TimeOutRequest < DateTime.MaxValue && record.TimeOutRequest > DateTime.MinValue)
+                {
+                    row.Cells["colTimeOutRequest"].Style.BackColor = Color.White;
+                    row.Cells["colTimeOutRequest"].Style.ForeColor = Color.Red;
+
+                } else
+                {
+                    row.Cells["colTimeOutRequest"].Style.BackColor = Color.White;
+                    row.Cells["colTimeOutRequest"].Style.ForeColor = Color.White;
+                }
+
+            }
+        }
+
+        private void btnHide_Click(object sender, EventArgs e)
+        {
+            if(dgvSignInRecords.SelectedRows.Count > 0)
+            {
+                DialogResult dr = MessageBox.Show("Are you sure you want to hide these records? there's no easy way to ever see them again.", "Are you sure?", MessageBoxButtons.YesNo);
+                if(dr == DialogResult.Yes)
+                {
+                    foreach(DataGridViewRow row in dgvSignInRecords.SelectedRows)
+                    {
+                        GeneralSignInRecord record = (GeneralSignInRecord)row.DataBoundItem;
+                        record.Active = false;
+                        Program.signInListService.UpsertSignInRecord(record);
+                    }
+                    updateSignInList();
+                }
+            }
         }
     }
 }
