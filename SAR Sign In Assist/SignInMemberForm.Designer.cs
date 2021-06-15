@@ -252,7 +252,7 @@ namespace SAR_Sign_In_Assist
             this.rbExistingMember.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbExistingMember.ImageIndex = 0;
             this.rbExistingMember.ImageList = this.imageList1;
-            this.rbExistingMember.Location = new System.Drawing.Point(10, 18);
+            this.rbExistingMember.Location = new System.Drawing.Point(6, 18);
             this.rbExistingMember.Name = "rbExistingMember";
             this.rbExistingMember.Size = new System.Drawing.Size(40, 40);
             this.rbExistingMember.TabIndex = 12;
@@ -277,7 +277,7 @@ namespace SAR_Sign_In_Assist
             this.rbNewMember.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbNewMember.ImageIndex = 0;
             this.rbNewMember.ImageList = this.imageList1;
-            this.rbNewMember.Location = new System.Drawing.Point(10, 171);
+            this.rbNewMember.Location = new System.Drawing.Point(6, 171);
             this.rbNewMember.Name = "rbNewMember";
             this.rbNewMember.Size = new System.Drawing.Size(40, 40);
             this.rbNewMember.TabIndex = 13;

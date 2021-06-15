@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ICAClassLibrary;
 using ICAClassLibrary.Models;
 using SAR_Sign_In_Assist.Models;
+using ICAClassLibrary.Utilities;
 
 namespace SAR_Sign_In_Assist
 {
@@ -49,7 +50,7 @@ namespace SAR_Sign_In_Assist
             dgvSignInRecords.AutoGenerateColumns = false;
             DateTime endDate = DateTime.Now;
             DateTime startDate = endDate.AddHours(-24);
-            
+
             if (rbFromDate.Checked) { startDate = datFromDate.Value; }
             if (rbToDate.Checked) { endDate = datToDate.Value; }
             Organization org = (Organization)cboSARGroup.SelectedItem;
@@ -58,7 +59,7 @@ namespace SAR_Sign_In_Assist
             dgvSignInRecords.DataSource = Program.signInListService.GetSignInRecords(startDate, endDate, false, false, org.OrganizationID);
         }
 
-       
+
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -181,7 +182,7 @@ namespace SAR_Sign_In_Assist
 
             //setNumberOfTeamAssignments();
 
-           
+
         }
 
         private void cboSARGroup_SelectedIndexChanged(object sender, EventArgs e)
@@ -211,7 +212,7 @@ namespace SAR_Sign_In_Assist
 
         private void dgvSignInRecords_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if(dgvSignInRecords.Rows.Count > 0 && e.RowIndex <= dgvSignInRecords.Rows.Count && dgvSignInRecords.Rows[e.RowIndex] != null)
+            if (dgvSignInRecords.Rows.Count > 0 && e.RowIndex <= dgvSignInRecords.Rows.Count && dgvSignInRecords.Rows[e.RowIndex] != null)
             {
                 DataGridViewRow row = dgvSignInRecords.Rows[e.RowIndex];
 
@@ -227,14 +228,15 @@ namespace SAR_Sign_In_Assist
                     }
 
                 }
-                
 
-                if(record.TimeOutRequest < DateTime.MaxValue && record.TimeOutRequest > DateTime.MinValue)
+
+                if (record.TimeOutRequest < DateTime.MaxValue && record.TimeOutRequest > DateTime.MinValue)
                 {
                     row.Cells["colTimeOutRequest"].Style.BackColor = Color.White;
                     row.Cells["colTimeOutRequest"].Style.ForeColor = Color.Red;
 
-                } else
+                }
+                else
                 {
                     row.Cells["colTimeOutRequest"].Style.BackColor = Color.White;
                     row.Cells["colTimeOutRequest"].Style.ForeColor = Color.White;
@@ -245,12 +247,12 @@ namespace SAR_Sign_In_Assist
 
         private void btnHide_Click(object sender, EventArgs e)
         {
-            if(dgvSignInRecords.SelectedRows.Count > 0)
+            if (dgvSignInRecords.SelectedRows.Count > 0)
             {
                 DialogResult dr = MessageBox.Show("Are you sure you want to hide these records? there's no easy way to ever see them again.", "Are you sure?", MessageBoxButtons.YesNo);
-                if(dr == DialogResult.Yes)
+                if (dr == DialogResult.Yes)
                 {
-                    foreach(DataGridViewRow row in dgvSignInRecords.SelectedRows)
+                    foreach (DataGridViewRow row in dgvSignInRecords.SelectedRows)
                     {
                         GeneralSignInRecord record = (GeneralSignInRecord)row.DataBoundItem;
                         record.Active = false;
@@ -259,6 +261,156 @@ namespace SAR_Sign_In_Assist
                     updateSignInList();
                 }
             }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.FileName = "SARSignIn-" + DateTime.Now.ToString("yyyy-MMM-dd-HH-mm") + ".csv";
+            DialogResult dr = saveFileDialog1.ShowDialog();
+            if (dr == DialogResult.OK && !string.IsNullOrEmpty(saveFileDialog1.FileName))
+            {
+                string exportPath = saveFileDialog1.FileName;
+
+                string csv = exportSignInToCSV();
+
+                try
+                {
+                    System.IO.File.WriteAllText(exportPath, csv);
+
+                    DialogResult result = MessageBox.Show("The file was saved successfully. Would you like to open it now?", "Save successful!", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(exportPath);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Sorry, there was a problem writing to the file.  Please report this error: " + ex.ToString());
+                }
+            }
+        }
+
+        private void exportSelectedRecordsToCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.FileName = "SARSignIn-" + DateTime.Now.ToString("yyyy-MMM-dd-HH-mm") + ".csv";
+            DialogResult dr = saveFileDialog1.ShowDialog();
+            if (dr == DialogResult.OK && !string.IsNullOrEmpty(saveFileDialog1.FileName))
+            {
+                string exportPath = saveFileDialog1.FileName;
+
+                string csv = exportSignInToCSV();
+
+                try
+                {
+                    System.IO.File.WriteAllText(exportPath, csv);
+
+                    DialogResult result = MessageBox.Show("The file was saved successfully. Would you like to open it now?", "Save successful!", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(exportPath);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Sorry, there was a problem writing to the file.  Please report this error: " + ex.ToString());
+                }
+            }
+        }
+
+        public string exportSignInToCSV(string delimiter = ",", bool exportAllVisible = false)
+        {
+            StringBuilder csv = new StringBuilder();
+            //header row
+            csv.Append("ACTIVITY"); csv.Append(delimiter);
+            csv.Append("GROUP"); csv.Append(delimiter);
+            csv.Append("NAME"); csv.Append(delimiter);
+            csv.Append("SIGN IN TIME"); csv.Append(delimiter);
+            csv.Append("SIGN OUT TIME"); csv.Append(delimiter);
+            csv.Append("KMs"); csv.Append(delimiter);
+
+            csv.Append(Environment.NewLine);
+
+            List<GeneralSignInRecord> records = new List<GeneralSignInRecord>();
+
+            if (exportAllVisible)
+            {
+
+                DateTime endDate = DateTime.Now;
+                DateTime startDate = endDate.AddHours(-24);
+
+                if (rbFromDate.Checked) { startDate = datFromDate.Value; }
+                if (rbToDate.Checked) { endDate = datToDate.Value; }
+                Organization org = (Organization)cboSARGroup.SelectedItem;
+                records = Program.signInListService.GetSignInRecords(startDate, endDate, false, false, org.OrganizationID);
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dgvSignInRecords.SelectedRows)
+                {
+                    GeneralSignInRecord rec = (GeneralSignInRecord)row.DataBoundItem;
+                    records.Add(rec);
+                }
+            }
+
+            foreach (GeneralSignInRecord record in records)
+            {
+                csv.Append(record.ActivityName.EscapeQuotes());
+                csv.Append(delimiter);
+                csv.Append(record.GroupName.EscapeQuotes());
+                csv.Append(delimiter);
+
+                csv.Append(record.MemberName.EscapeQuotes());
+                csv.Append(delimiter);
+
+                if (record.IsSignIn) { csv.Append(record.SignInTime.ToString("HH:mm")); }
+                csv.Append(delimiter);
+                if (!record.IsSignIn) { csv.Append(record.SignOutTime.ToString("HH:mm")); }
+                csv.Append(delimiter);
+                csv.Append(record.KMs.ToString());
+                csv.Append(Environment.NewLine);
+            }
+            return csv.ToString();
+        }
+
+        private void btnBulkSignIn_Click(object sender, EventArgs e)
+        {
+            using (SignInMembersBulkForm bulkForm = new SignInMembersBulkForm())
+            {
+                DialogResult result = bulkForm.ShowDialog(this);
+                if(result == DialogResult.OK)
+                {
+                    updateSignInList();
+                }
+            }
+        }
+
+        private void exportDisplayedRecordsToCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            saveFileDialog1.FileName = "SARSignIn-" + DateTime.Now.ToString("yyyy-MMM-dd-HH-mm") + ".csv";
+            DialogResult dr = saveFileDialog1.ShowDialog();
+            if (dr == DialogResult.OK && !string.IsNullOrEmpty(saveFileDialog1.FileName))
+            {
+                string exportPath = saveFileDialog1.FileName;
+
+                string csv = exportSignInToCSV(",", true);
+
+                try
+                {
+                    System.IO.File.WriteAllText(exportPath, csv);
+
+                    DialogResult result = MessageBox.Show("The file was saved successfully. Would you like to open it now?", "Save successful!", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(exportPath);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Sorry, there was a problem writing to the file.  Please report this error: " + ex.ToString());
+                }
+            }
+        
         }
     }
 }

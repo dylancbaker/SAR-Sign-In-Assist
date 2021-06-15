@@ -134,6 +134,12 @@
     <Compile Include="SignInMemberForm.Designer.cs">
       <DependentUpon>SignInMemberForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SignInMembersBulkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SignInMembersBulkForm.Designer.cs">
+      <DependentUpon>SignInMembersBulkForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\SignInMemberViewModel.cs" />
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SignInMemberForm.resx">
       <DependentUpon>SignInMemberForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignInMembersBulkForm.resx">
+      <DependentUpon>SignInMembersBulkForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -192,6 +201,7 @@
     <None Include="Resources\glyphicons-basic-432-log-out.png" />
     <None Include="Resources\glyphicons-basic-965-layers-plus.png" />
     <None Include="Resources\glyphicons-basic-431-log-in.png" />
+    <None Include="Resources\glyphicons-basic-739-check.png" />
     <Content Include="sar_sign_in_assist_logo_IDE_icon.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -143,6 +143,16 @@ namespace SAR_Sign_In_Assist.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_basic_739_check {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-basic-739-check", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap glyphicons_basic_931_speech_bubble_question {
             get {
                 object obj = ResourceManager.GetObject("glyphicons-basic-931-speech-bubble-question", resourceCulture);

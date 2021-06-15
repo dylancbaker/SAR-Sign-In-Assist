@@ -30,9 +30,9 @@ namespace SAR_Sign_In_Assist
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignInList));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +73,12 @@ namespace SAR_Sign_In_Assist
             this.btnHide = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
+            this.colActivityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSignInTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTimeOutRequest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnQRScannerHelp = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
@@ -83,11 +89,12 @@ namespace SAR_Sign_In_Assist
             this.btnSignIn = new System.Windows.Forms.Button();
             this.btnSendSelected = new System.Windows.Forms.Button();
             this.btnRequestUpdates = new System.Windows.Forms.Button();
-            this.colActivityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSignInTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTimeOutRequest = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.reportExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printSelectedRecordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printDisplayedRecordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportSelectedRecordsToCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportDisplayedRecordsToCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSignInRecords)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -114,7 +121,8 @@ namespace SAR_Sign_In_Assist
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.reportExportToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1091, 33);
@@ -221,7 +229,7 @@ namespace SAR_Sign_In_Assist
             this.dgvSignInRecords.RowHeadersVisible = false;
             this.dgvSignInRecords.RowTemplate.Height = 35;
             this.dgvSignInRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSignInRecords.Size = new System.Drawing.Size(798, 501);
+            this.dgvSignInRecords.Size = new System.Drawing.Size(798, 517);
             this.dgvSignInRecords.TabIndex = 1;
             this.dgvSignInRecords.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSignInRecords_CellFormatting);
             // 
@@ -276,7 +284,7 @@ namespace SAR_Sign_In_Assist
             this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Panel2.Controls.Add(this.btnBulkSignIn);
             this.splitContainer1.Panel2.Controls.Add(this.btnSignIn);
-            this.splitContainer1.Size = new System.Drawing.Size(1091, 501);
+            this.splitContainer1.Size = new System.Drawing.Size(1091, 517);
             this.splitContainer1.SplitterDistance = 798;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -285,7 +293,7 @@ namespace SAR_Sign_In_Assist
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(4, 360);
+            this.label5.Location = new System.Drawing.Point(4, 376);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(274, 29);
             this.label5.TabIndex = 26;
@@ -438,7 +446,7 @@ namespace SAR_Sign_In_Assist
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 217);
+            this.label1.Location = new System.Drawing.Point(9, 233);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(274, 29);
             this.label1.TabIndex = 16;
@@ -449,7 +457,7 @@ namespace SAR_Sign_In_Assist
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 75);
+            this.label6.Location = new System.Drawing.Point(9, 91);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(264, 29);
             this.label6.TabIndex = 14;
@@ -473,7 +481,7 @@ namespace SAR_Sign_In_Assist
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1091, 603);
+            this.splitContainer2.Size = new System.Drawing.Size(1091, 619);
             this.splitContainer2.SplitterDistance = 47;
             this.splitContainer2.TabIndex = 3;
             // 
@@ -515,8 +523,8 @@ namespace SAR_Sign_In_Assist
             this.splitContainer3.Panel2.Controls.Add(this.btnView);
             this.splitContainer3.Panel2.Controls.Add(this.btnSendSelected);
             this.splitContainer3.Panel2.Controls.Add(this.btnRequestUpdates);
-            this.splitContainer3.Size = new System.Drawing.Size(1091, 552);
-            this.splitContainer3.SplitterDistance = 501;
+            this.splitContainer3.Size = new System.Drawing.Size(1091, 568);
+            this.splitContainer3.SplitterDistance = 517;
             this.splitContainer3.TabIndex = 3;
             // 
             // btnHide
@@ -547,6 +555,59 @@ namespace SAR_Sign_In_Assist
             this.btnView.Text = "View";
             this.btnView.UseVisualStyleBackColor = true;
             // 
+            // colActivityName
+            // 
+            this.colActivityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colActivityName.DataPropertyName = "ActivityName";
+            this.colActivityName.HeaderText = "Activity";
+            this.colActivityName.Name = "colActivityName";
+            this.colActivityName.ReadOnly = true;
+            this.colActivityName.Width = 92;
+            // 
+            // colGroup
+            // 
+            this.colGroup.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colGroup.DataPropertyName = "GroupName";
+            this.colGroup.HeaderText = "SAR Group";
+            this.colGroup.Name = "colGroup";
+            this.colGroup.ReadOnly = true;
+            this.colGroup.Width = 120;
+            // 
+            // colName
+            // 
+            this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colName.DataPropertyName = "MemberName";
+            this.colName.HeaderText = "Name";
+            this.colName.MinimumWidth = 100;
+            this.colName.Name = "colName";
+            this.colName.ReadOnly = true;
+            // 
+            // colSignInTime
+            // 
+            this.colSignInTime.DataPropertyName = "SignInTime";
+            dataGridViewCellStyle7.Format = "yyyy-MMM-dd HH:mm";
+            dataGridViewCellStyle7.NullValue = "00:00";
+            this.colSignInTime.DefaultCellStyle = dataGridViewCellStyle7;
+            this.colSignInTime.HeaderText = "Sign In/Out Time";
+            this.colSignInTime.Name = "colSignInTime";
+            this.colSignInTime.ReadOnly = true;
+            this.colSignInTime.Width = 250;
+            // 
+            // colTimeOutRequest
+            // 
+            this.colTimeOutRequest.DataPropertyName = "MustBeOutTimeOrBlank";
+            dataGridViewCellStyle8.NullValue = null;
+            this.colTimeOutRequest.DefaultCellStyle = dataGridViewCellStyle8;
+            this.colTimeOutRequest.HeaderText = "Must Be Out";
+            this.colTimeOutRequest.Name = "colTimeOutRequest";
+            this.colTimeOutRequest.ReadOnly = true;
+            this.colTimeOutRequest.Width = 140;
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "csv";
+            this.saveFileDialog1.Filter = "CSV Files (*.CSV)|*.csv";
+            // 
             // btnQRScannerHelp
             // 
             this.btnQRScannerHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -565,7 +626,7 @@ namespace SAR_Sign_In_Assist
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_filetypes_9_file_spreadsheet;
-            this.btnExport.Location = new System.Drawing.Point(9, 448);
+            this.btnExport.Location = new System.Drawing.Point(9, 464);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(269, 50);
             this.btnExport.TabIndex = 28;
@@ -573,13 +634,14 @@ namespace SAR_Sign_In_Assist
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnPrint
             // 
             this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrint.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_16_print;
-            this.btnPrint.Location = new System.Drawing.Point(9, 392);
+            this.btnPrint.Location = new System.Drawing.Point(9, 408);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(269, 50);
             this.btnPrint.TabIndex = 27;
@@ -609,7 +671,7 @@ namespace SAR_Sign_In_Assist
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(9, 307);
+            this.button2.Location = new System.Drawing.Point(9, 323);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(269, 50);
             this.button2.TabIndex = 18;
@@ -623,7 +685,7 @@ namespace SAR_Sign_In_Assist
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(9, 251);
+            this.button1.Location = new System.Drawing.Point(9, 267);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(269, 50);
             this.button1.TabIndex = 17;
@@ -637,7 +699,7 @@ namespace SAR_Sign_In_Assist
             this.btnBulkSignIn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBulkSignIn.Image = ((System.Drawing.Image)(resources.GetObject("btnBulkSignIn.Image")));
-            this.btnBulkSignIn.Location = new System.Drawing.Point(10, 163);
+            this.btnBulkSignIn.Location = new System.Drawing.Point(10, 179);
             this.btnBulkSignIn.Name = "btnBulkSignIn";
             this.btnBulkSignIn.Size = new System.Drawing.Size(269, 50);
             this.btnBulkSignIn.TabIndex = 15;
@@ -645,13 +707,14 @@ namespace SAR_Sign_In_Assist
             this.btnBulkSignIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBulkSignIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBulkSignIn.UseVisualStyleBackColor = true;
+            this.btnBulkSignIn.Click += new System.EventHandler(this.btnBulkSignIn_Click);
             // 
             // btnSignIn
             // 
             this.btnSignIn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSignIn.Image = ((System.Drawing.Image)(resources.GetObject("btnSignIn.Image")));
-            this.btnSignIn.Location = new System.Drawing.Point(9, 107);
+            this.btnSignIn.Location = new System.Drawing.Point(9, 123);
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(269, 50);
             this.btnSignIn.TabIndex = 13;
@@ -687,59 +750,54 @@ namespace SAR_Sign_In_Assist
             this.btnRequestUpdates.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnRequestUpdates.UseVisualStyleBackColor = true;
             // 
-            // colActivityName
+            // reportExportToolStripMenuItem
             // 
-            this.colActivityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colActivityName.DataPropertyName = "ActivityName";
-            this.colActivityName.HeaderText = "Activity";
-            this.colActivityName.Name = "colActivityName";
-            this.colActivityName.ReadOnly = true;
-            this.colActivityName.Width = 92;
+            this.reportExportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.printSelectedRecordsToolStripMenuItem,
+            this.printDisplayedRecordsToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exportSelectedRecordsToCSVToolStripMenuItem,
+            this.exportDisplayedRecordsToCSVToolStripMenuItem});
+            this.reportExportToolStripMenuItem.Name = "reportExportToolStripMenuItem";
+            this.reportExportToolStripMenuItem.Size = new System.Drawing.Size(150, 29);
+            this.reportExportToolStripMenuItem.Text = "Report / Export";
             // 
-            // colGroup
+            // printSelectedRecordsToolStripMenuItem
             // 
-            this.colGroup.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colGroup.DataPropertyName = "GroupName";
-            this.colGroup.HeaderText = "SAR Group";
-            this.colGroup.Name = "colGroup";
-            this.colGroup.ReadOnly = true;
-            this.colGroup.Width = 131;
+            this.printSelectedRecordsToolStripMenuItem.Name = "printSelectedRecordsToolStripMenuItem";
+            this.printSelectedRecordsToolStripMenuItem.Size = new System.Drawing.Size(357, 30);
+            this.printSelectedRecordsToolStripMenuItem.Text = "Print Selected Records";
             // 
-            // colName
+            // printDisplayedRecordsToolStripMenuItem
             // 
-            this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colName.DataPropertyName = "MemberName";
-            this.colName.HeaderText = "Name";
-            this.colName.MinimumWidth = 100;
-            this.colName.Name = "colName";
-            this.colName.ReadOnly = true;
+            this.printDisplayedRecordsToolStripMenuItem.Name = "printDisplayedRecordsToolStripMenuItem";
+            this.printDisplayedRecordsToolStripMenuItem.Size = new System.Drawing.Size(357, 30);
+            this.printDisplayedRecordsToolStripMenuItem.Text = "Print Displayed Records";
             // 
-            // colSignInTime
+            // toolStripSeparator1
             // 
-            this.colSignInTime.DataPropertyName = "SignInTime";
-            dataGridViewCellStyle3.Format = "yyyy-MMM-dd HH:mm";
-            dataGridViewCellStyle3.NullValue = "00:00";
-            this.colSignInTime.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colSignInTime.HeaderText = "Sign In/Out Time";
-            this.colSignInTime.Name = "colSignInTime";
-            this.colSignInTime.ReadOnly = true;
-            this.colSignInTime.Width = 250;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(354, 6);
             // 
-            // colTimeOutRequest
+            // exportSelectedRecordsToCSVToolStripMenuItem
             // 
-            this.colTimeOutRequest.DataPropertyName = "MustBeOutTimeOrBlank";
-            dataGridViewCellStyle4.NullValue = null;
-            this.colTimeOutRequest.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colTimeOutRequest.HeaderText = "Must Be Out";
-            this.colTimeOutRequest.Name = "colTimeOutRequest";
-            this.colTimeOutRequest.ReadOnly = true;
-            this.colTimeOutRequest.Width = 140;
+            this.exportSelectedRecordsToCSVToolStripMenuItem.Name = "exportSelectedRecordsToCSVToolStripMenuItem";
+            this.exportSelectedRecordsToCSVToolStripMenuItem.Size = new System.Drawing.Size(357, 30);
+            this.exportSelectedRecordsToCSVToolStripMenuItem.Text = "Export Selected Records to CSV";
+            this.exportSelectedRecordsToCSVToolStripMenuItem.Click += new System.EventHandler(this.exportSelectedRecordsToCSVToolStripMenuItem_Click);
+            // 
+            // exportDisplayedRecordsToCSVToolStripMenuItem
+            // 
+            this.exportDisplayedRecordsToCSVToolStripMenuItem.Name = "exportDisplayedRecordsToCSVToolStripMenuItem";
+            this.exportDisplayedRecordsToCSVToolStripMenuItem.Size = new System.Drawing.Size(357, 30);
+            this.exportDisplayedRecordsToCSVToolStripMenuItem.Text = "Export Displayed Records to CSV";
+            this.exportDisplayedRecordsToCSVToolStripMenuItem.Click += new System.EventHandler(this.exportDisplayedRecordsToCSVToolStripMenuItem_Click);
             // 
             // SignInList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1091, 636);
+            this.ClientSize = new System.Drawing.Size(1091, 652);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -834,5 +892,12 @@ namespace SAR_Sign_In_Assist
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSignInTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTimeOutRequest;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem reportExportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printSelectedRecordsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printDisplayedRecordsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem exportSelectedRecordsToCSVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportDisplayedRecordsToCSVToolStripMenuItem;
     }
 }
