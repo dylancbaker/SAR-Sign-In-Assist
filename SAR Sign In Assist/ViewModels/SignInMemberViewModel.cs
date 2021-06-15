@@ -41,7 +41,7 @@ namespace SAR_Sign_In_Assist.ViewModels
         }
         public List<Organization> GetOrganizations()
         {
-            return new Organization().getStaticOrganizationList().OrderBy(o => o.OrganizationName).ToList();
+            return new Organization().getStaticOrganizationList();
         }
         public Guid SavedOrganizationID
         {

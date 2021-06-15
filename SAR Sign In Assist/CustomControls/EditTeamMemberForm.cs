@@ -24,7 +24,7 @@ namespace SAR_Sign_In_Assist.CustomControls
             InitializeComponent();
             CurrentMember = new TeamMember();
             List<Organization> allGroups = new Organization().getStaticOrganizationList();
-            allGroups = allGroups.OrderBy(o => o.OrganizationName).ToList();
+            //allGroups = allGroups.OrderBy(o => o.OrganizationName).ToList();
             cboOrganization.DataSource = allGroups;
 
 

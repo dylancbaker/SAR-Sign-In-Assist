@@ -25,7 +25,7 @@ namespace SAR_Sign_In_Assist
         private void SignInMembersBulkForm_Load(object sender, EventArgs e)
         {
             List<Organization> allGroups = new Organization().getStaticOrganizationList();
-            allGroups = allGroups.OrderBy(o => o.OrganizationName).ToList();
+            
             Organization blankOrg = new Organization();
             blankOrg.OrganizationID = Guid.Empty;
             blankOrg.OrganizationName = "-All Groups-";

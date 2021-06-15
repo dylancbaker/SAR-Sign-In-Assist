@@ -91,6 +91,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
     <Reference Include="zxing, Version=0.16.6.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
       <HintPath>..\packages\ZXing.Net.0.16.6\lib\net47\zxing.dll</HintPath>
     </Reference>
@@ -117,6 +118,25 @@
     <Compile Include="CustomControls\EditTeamMemberForm.Designer.cs">
       <DependentUpon>EditTeamMemberForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\LabelWithImage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\LabelWithImage.Designer.cs">
+      <DependentUpon>LabelWithImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditMemberSignInTimes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditMemberSignInTimes.Designer.cs">
+      <DependentUpon>EditMemberSignInTimes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MemberStatusByActivityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MemberStatusByActivityForm.Designer.cs">
+      <DependentUpon>MemberStatusByActivityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\GeneralSignInRecord.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -140,7 +160,19 @@
     <Compile Include="SignInMembersBulkForm.Designer.cs">
       <DependentUpon>SignInMembersBulkForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SignOutMemberForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SignOutMemberForm.Designer.cs">
+      <DependentUpon>SignOutMemberForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\SignInMemberViewModel.cs" />
+    <Compile Include="ViewSignInRecordDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewSignInRecordDetailsForm.Designer.cs">
+      <DependentUpon>ViewSignInRecordDetailsForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,6 +181,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\EditTeamMemberForm.resx">
       <DependentUpon>EditTeamMemberForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\LabelWithImage.resx">
+      <DependentUpon>LabelWithImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditMemberSignInTimes.resx">
+      <DependentUpon>EditMemberSignInTimes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MemberStatusByActivityForm.resx">
+      <DependentUpon>MemberStatusByActivityForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -168,6 +209,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SignInMembersBulkForm.resx">
       <DependentUpon>SignInMembersBulkForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SignOutMemberForm.resx">
+      <DependentUpon>SignOutMemberForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewSignInRecordDetailsForm.resx">
+      <DependentUpon>ViewSignInRecordDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -202,6 +249,16 @@
     <None Include="Resources\glyphicons-basic-965-layers-plus.png" />
     <None Include="Resources\glyphicons-basic-431-log-in.png" />
     <None Include="Resources\glyphicons-basic-739-check.png" />
+    <None Include="Resources\glyphicons-basic-74-wifi.png" />
+    <None Include="Resources\glyphicons-basic-74-wifi%402x.png" />
+    <None Include="Resources\glyphicons-basic-74-NoWifi.png" />
+    <None Include="Resources\glyphicons-basic-74-NoWifi1.png" />
+    <None Include="Resources\glyphicons-basic-223-chevron-left.png" />
+    <None Include="Resources\glyphicons-basic-199-save.png" />
+    <None Include="Resources\check-box-checked.png" />
+    <None Include="Resources\check-box-unchecked.png" />
+    <None Include="Resources\glyphicons-basic-55-clock.png" />
+    <None Include="Resources\glyphicons-basic-152-square-new-window.png" />
     <Content Include="sar_sign_in_assist_logo_IDE_icon.ico" />
   </ItemGroup>
   <ItemGroup>

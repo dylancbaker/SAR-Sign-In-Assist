@@ -63,9 +63,49 @@ namespace SAR_Sign_In_Assist.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap check_box_checked {
+            get {
+                object obj = ResourceManager.GetObject("check-box-checked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_box_unchecked {
+            get {
+                object obj = ResourceManager.GetObject("check-box-unchecked", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_basic_152_square_new_window {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-basic-152-square-new-window", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap glyphicons_basic_16_print {
             get {
                 object obj = ResourceManager.GetObject("glyphicons-basic-16-print", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_basic_199_save {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-basic-199-save", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -96,6 +136,16 @@ namespace SAR_Sign_In_Assist.Properties {
         internal static System.Drawing.Bitmap glyphicons_basic_222_chevron_up_3x {
             get {
                 object obj = ResourceManager.GetObject("glyphicons-basic-222-chevron-up@3x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_basic_223_chevron_left {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-basic-223-chevron-left", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +193,59 @@ namespace SAR_Sign_In_Assist.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_basic_55_clock {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-basic-55-clock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap glyphicons_basic_739_check {
             get {
                 object obj = ResourceManager.GetObject("glyphicons-basic-739-check", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_basic_74_NoWifi {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-basic-74-NoWifi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_basic_74_NoWifi1 {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-basic-74-NoWifi1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_basic_74_wifi {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-basic-74-wifi", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_basic_74_wifi_2x {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-basic-74-wifi@2x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
