@@ -29,9 +29,9 @@ namespace SAR_Sign_In_Assist
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemberStatusByActivityForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.cboActivity = new System.Windows.Forms.ComboBox();
@@ -52,6 +52,7 @@ namespace SAR_Sign_In_Assist
             this.label6 = new System.Windows.Forms.Label();
             this.btnBulkSignIn = new System.Windows.Forms.Button();
             this.btnSignIn = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -175,9 +176,9 @@ namespace SAR_Sign_In_Assist
             // 
             this.colSignInTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.colSignInTime.DataPropertyName = "SignInTime";
-            dataGridViewCellStyle1.Format = "HH:mm yyyy-MMM-dd";
-            dataGridViewCellStyle1.NullValue = null;
-            this.colSignInTime.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Format = "HH:mm yyyy-MMM-dd";
+            dataGridViewCellStyle4.NullValue = null;
+            this.colSignInTime.DefaultCellStyle = dataGridViewCellStyle4;
             this.colSignInTime.HeaderText = "Sign In";
             this.colSignInTime.Name = "colSignInTime";
             this.colSignInTime.ReadOnly = true;
@@ -187,8 +188,8 @@ namespace SAR_Sign_In_Assist
             // 
             this.colTimeOutRequest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.colTimeOutRequest.DataPropertyName = "TimeOutRequestAsStr";
-            dataGridViewCellStyle2.Format = "HH:mm";
-            this.colTimeOutRequest.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Format = "HH:mm";
+            this.colTimeOutRequest.DefaultCellStyle = dataGridViewCellStyle5;
             this.colTimeOutRequest.HeaderText = "Requested Time Out";
             this.colTimeOutRequest.Name = "colTimeOutRequest";
             this.colTimeOutRequest.ReadOnly = true;
@@ -198,9 +199,9 @@ namespace SAR_Sign_In_Assist
             // 
             this.colSignOut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.colSignOut.DataPropertyName = "SignOutTimeOrBlank";
-            dataGridViewCellStyle3.Format = "HH:mm";
-            dataGridViewCellStyle3.NullValue = null;
-            this.colSignOut.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Format = "HH:mm";
+            dataGridViewCellStyle6.NullValue = null;
+            this.colSignOut.DefaultCellStyle = dataGridViewCellStyle6;
             this.colSignOut.HeaderText = "Sign Out";
             this.colSignOut.Name = "colSignOut";
             this.colSignOut.ReadOnly = true;
@@ -219,6 +220,7 @@ namespace SAR_Sign_In_Assist
             this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnPrint
             // 
@@ -325,6 +327,11 @@ namespace SAR_Sign_In_Assist
             this.btnSignIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSignIn.UseVisualStyleBackColor = true;
             // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "csv";
+            this.saveFileDialog1.Filter = "CSV Files (*.CSV)|*.csv";
+            // 
             // MemberStatusByActivityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -372,5 +379,6 @@ namespace SAR_Sign_In_Assist
         private System.Windows.Forms.DataGridViewTextBoxColumn colSignInTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTimeOutRequest;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSignOut;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

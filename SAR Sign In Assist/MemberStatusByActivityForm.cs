@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ICAClassLibrary.Models;
+using ICAClassLibrary.Utilities;
 
 namespace SAR_Sign_In_Assist
 {
@@ -147,5 +148,82 @@ namespace SAR_Sign_In_Assist
             statuses = statuses.Where(o => !o.IsSignedOut).ToList();
             SignOutTheseMembers(statuses);
         }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+
+            Activity act = new Activity();
+            if (cboActivity.SelectedItem != null)
+            {
+                act = (Activity)cboActivity.SelectedItem;
+            }
+
+
+
+            saveFileDialog1.FileName = "SARSignIn-" + act.ActivityName + "-" + DateTime.Now.ToString("yyyy-MMM-dd-HH-mm") + ".csv";
+            DialogResult dr = saveFileDialog1.ShowDialog();
+            if (dr == DialogResult.OK && !string.IsNullOrEmpty(saveFileDialog1.FileName))
+            {
+                string exportPath = saveFileDialog1.FileName;
+
+                string csv = exportSignInToCSV();
+
+                try
+                {
+                    System.IO.File.WriteAllText(exportPath, csv);
+
+                    DialogResult result = MessageBox.Show("The file was saved successfully. Would you like to open it now?", "Save successful!", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(exportPath);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Sorry, there was a problem writing to the file.  Please report this error: " + ex.ToString());
+                }
+            }
+        }
+
+        public string exportSignInToCSV(string delimiter = ",")
+        {
+            StringBuilder csv = new StringBuilder();
+            //header row
+            csv.Append("GROUP"); csv.Append(delimiter);
+            csv.Append("NAME"); csv.Append(delimiter);
+            csv.Append("SIGN IN TIME"); csv.Append(delimiter);
+            csv.Append("SIGN OUT TIME"); csv.Append(delimiter);
+            csv.Append("KMs"); csv.Append(delimiter);
+
+            csv.Append(Environment.NewLine);
+
+            List<MemberStatus> records = new List<MemberStatus>();
+
+            
+            foreach (DataGridViewRow row in dgvMembersOnTask.Rows)
+            {
+                MemberStatus rec = (MemberStatus)row.DataBoundItem;
+                records.Add(rec);
+            }
+            
+
+            foreach (MemberStatus record in records)
+            {
+                csv.Append(record.OrganizationName.EscapeQuotes());
+                csv.Append(delimiter);
+
+                csv.Append(record.MemberName.EscapeQuotes());
+                csv.Append(delimiter);
+
+                 csv.Append(record.SignInTime.ToString("HH:mm")); 
+                csv.Append(delimiter);
+                csv.Append(record.SignOutTime.ToString("HH:mm")); 
+                csv.Append(delimiter);
+                csv.Append(record.KMs.ToString());
+                csv.Append(Environment.NewLine);
+            }
+            return csv.ToString();
+        }
+
     }
 }
