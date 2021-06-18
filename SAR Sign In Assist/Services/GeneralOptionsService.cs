@@ -205,6 +205,11 @@ namespace SAR_Sign_In_Assist.Services
 
             switch (property_name)
             {
+                case "TeamMember":
+                    TeamMember member = (TeamMember)newValue;
+                    _options.AllTeamMembers = _options.AllTeamMembers.Where(o => o.PersonID != member.PersonID).ToList();
+                    _options.AllTeamMembers.Add(member);
+                    break;
                 case "IncludeExecutionIn204Briefings":
                     _options.IncludeExecutionIn204Briefings = (bool)newValue;
                     break;

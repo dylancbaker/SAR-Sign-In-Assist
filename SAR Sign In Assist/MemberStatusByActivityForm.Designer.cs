@@ -231,10 +231,11 @@ namespace SAR_Sign_In_Assist
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(238, 50);
             this.btnPrint.TabIndex = 36;
-            this.btnPrint.Text = "Print Selected";
+            this.btnPrint.Text = "Print";
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // label5
             // 
@@ -312,6 +313,7 @@ namespace SAR_Sign_In_Assist
             this.btnBulkSignIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnBulkSignIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBulkSignIn.UseVisualStyleBackColor = true;
+            this.btnBulkSignIn.Click += new System.EventHandler(this.btnBulkSignIn_Click);
             // 
             // btnSignIn
             // 
@@ -326,6 +328,7 @@ namespace SAR_Sign_In_Assist
             this.btnSignIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSignIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSignIn.UseVisualStyleBackColor = true;
+            this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
             // 
             // saveFileDialog1
             // 

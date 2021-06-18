@@ -51,9 +51,48 @@
     <ApplicationIcon>sar_sign_in_assist_logo_IDE_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.6.1\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
     <Reference Include="ICAClassLibrary, Version=6.14.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SAR ICS Form Helper\SAR ICS Form Helper\bin\Debug\ICAClassLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.barcodes, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.forms, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.forms.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.io, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.io.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.kernel, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.layout, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.layout.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfa, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.sign, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.sign.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.styledxmlparser, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.styledxmlparser.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.svg, Version=7.1.15.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.15\lib\net45\itext.svg.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="NetworkCommsDotNet, Version=3.0.0.0, Culture=neutral, PublicKeyToken=f58108eb6480f6ec, processorArchitecture=MSIL">
       <HintPath>..\packages\NetworkCommsDotNet.3.0.3\lib\NetworkCommsDotNet.dll</HintPath>
@@ -124,11 +163,29 @@
     <Compile Include="CustomControls\LabelWithImage.Designer.cs">
       <DependentUpon>LabelWithImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditMemberForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditMemberForm.Designer.cs">
+      <DependentUpon>EditMemberForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditMemberSignInTimes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditMemberSignInTimes.Designer.cs">
       <DependentUpon>EditMemberSignInTimes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditOptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditOptionsForm.Designer.cs">
+      <DependentUpon>EditOptionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditSavedTeamMembers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditSavedTeamMembers.Designer.cs">
+      <DependentUpon>EditSavedTeamMembers.cs</DependentUpon>
     </Compile>
     <Compile Include="MemberStatusByActivityForm.cs">
       <SubType>Form</SubType>
@@ -138,9 +195,12 @@
     </Compile>
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\GeneralSignInRecord.cs" />
+    <Compile Include="Models\GroupSignInRecord.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\FileManagementService.cs" />
     <Compile Include="Services\GeneralOptionsService.cs" />
+    <Compile Include="Services\ICS211CheckInListService.cs" />
     <Compile Include="Services\SignInListService.cs" />
     <Compile Include="SignInList.cs">
       <SubType>Form</SubType>
@@ -185,8 +245,17 @@
     <EmbeddedResource Include="CustomControls\LabelWithImage.resx">
       <DependentUpon>LabelWithImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditMemberForm.resx">
+      <DependentUpon>EditMemberForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditMemberSignInTimes.resx">
       <DependentUpon>EditMemberSignInTimes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditOptionsForm.resx">
+      <DependentUpon>EditOptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditSavedTeamMembers.resx">
+      <DependentUpon>EditSavedTeamMembers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MemberStatusByActivityForm.resx">
       <DependentUpon>MemberStatusByActivityForm.cs</DependentUpon>
@@ -216,6 +285,9 @@
     <EmbeddedResource Include="ViewSignInRecordDetailsForm.resx">
       <DependentUpon>ViewSignInRecordDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ICSForms\ICS 211 - Check In List.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -259,6 +331,10 @@
     <None Include="Resources\check-box-unchecked.png" />
     <None Include="Resources\glyphicons-basic-55-clock.png" />
     <None Include="Resources\glyphicons-basic-152-square-new-window.png" />
+    <None Include="Resources\glyphicons-basic-17-bin.png" />
+    <None Include="Resources\glyphicons-basic-151-square-edit.png" />
+    <None Include="Resources\glyphicons-basic-371-plus.png" />
+    <None Include="Resources\d4hsmall.png" />
     <Content Include="sar_sign_in_assist_logo_IDE_icon.ico" />
   </ItemGroup>
   <ItemGroup>

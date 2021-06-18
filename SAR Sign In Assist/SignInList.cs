@@ -14,6 +14,9 @@ using ICAClassLibrary.Utilities;
 using SAR_Sign_In_Assist.Services;
 
 using System.Runtime.InteropServices;
+using System.IO;
+using iTextSharp.text.pdf;
+
 namespace SAR_Sign_In_Assist
 {
     public partial class SignInList : Form
@@ -436,6 +439,7 @@ namespace SAR_Sign_In_Assist
         {
             using (SignInMembersBulkForm bulkForm = new SignInMembersBulkForm())
             {
+                bulkForm.ActivityName = txtCurrentActivity.Text;
                 DialogResult result = bulkForm.ShowDialog(this);
                 if (result == DialogResult.OK)
                 {
@@ -508,8 +512,8 @@ namespace SAR_Sign_In_Assist
             }
 
             //only allow editing if they're all the same type of record (ie all sign in or all sign out)
-
-            if (selectedRecords.Count == 1 || selectedRecords.Where(o => o.IsSignIn).Count() == selectedRecords.Count)
+            
+            if (selectedRecords.Count > 0 && ( selectedRecords.Count == 1 || selectedRecords.Where(o => o.IsSignIn).Count() == selectedRecords.Count))
             {
 
                 GeneralSignInRecord recordToEdit = new GeneralSignInRecord();
@@ -593,6 +597,7 @@ namespace SAR_Sign_In_Assist
 
         private void btnSignOut_Click(object sender, EventArgs e)
         {
+            
             List<GeneralSignInRecord> selectedRecords = new List<GeneralSignInRecord>();
             foreach (DataGridViewRow row in dgvSignInRecords.SelectedRows)
             {
@@ -781,103 +786,101 @@ namespace SAR_Sign_In_Assist
 
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg == 0x0312)
+            if (ListenForQRScanner)
             {
-                int i = m.WParam.ToInt32();
-            }
-            //Handles the ~ key for sign in barcodes
-            if (m.Msg == 0x0312 && m.WParam.ToInt32() == mSignInHotKeyID)
-            {
-                //Do something here, the key pressed matches our listener
-                if (!listeningToSignInBarcode)
+                //Handles the ~ key for sign in barcodes
+                if (m.Msg == 0x0312 && m.WParam.ToInt32() == mSignInHotKeyID)
                 {
-                    listeningToSignInBarcode = true;
-                    startListeningToBarcode = DateTime.Now;
-                    barcodeInput = new StringBuilder();
-                    this.BringToFront();
-                    lblCurrentActivity.Select();
-                }
-                else if (listeningToSignInBarcode)
-                {
-                    if (barcodeInput.Length > 5)
+                    //Do something here, the key pressed matches our listener
+                    if (!listeningToSignInBarcode)
                     {
-                        GeneralSignInRecord record = getRecordFromBarcode(barcodeInput.ToString());
-                        listeningToSignInBarcode = false;
-
-                        Program.signInListService.UpsertSignInRecord(record);
-                        updateSignInList();
+                        listeningToSignInBarcode = true;
+                        startListeningToBarcode = DateTime.Now;
+                        barcodeInput = new StringBuilder();
+                        this.BringToFront();
+                        lblCurrentActivity.Select();
                     }
-                    listeningToSignInBarcode = false;
-                }
-
-            }
-
-            else if (m.Msg == 0x0312 && m.WParam.ToInt32() == mSignOutHotKeyID)
-            {
-                if (!listeningToBarcode)
-                {
-                    listeningToSignOutBarcode = true;
-                    startListeningToBarcode = DateTime.Now;
-                    barcodeInput = new StringBuilder();
-                    lblCurrentActivity.Select();
-                }
-                else if (listeningToBarcode)
-                {
-                    if (barcodeInput.Length > 5)
+                    else if (listeningToSignInBarcode)
                     {
-                        GeneralSignInRecord record = getRecordFromBarcode(barcodeInput.ToString());
-                        listeningToSignOutBarcode = false;
-                        Program.signInListService.UpsertSignInRecord(record);
-                        updateSignInList();
-                    }
-                    listeningToSignInBarcode = false;
-                }
-            }
-            else if (m.Msg == 0x0312 && m.WParam.ToInt32() == mGenericSignInOutHotKeyID)
-            {
-                if (!listeningToBarcode)
-                {
-                    listeningToInOutBarcode = true;
-                    startListeningToBarcode = DateTime.Now;
-                    barcodeInput = new StringBuilder();
-                    lblCurrentActivity.Select();
-                }
-                else if (listeningToBarcode)
-                {
-                    if (barcodeInput.Length > 5)
-                    {
-                        GeneralSignInRecord record = getRecordFromBarcode(barcodeInput.ToString());
-                        listeningToInOutBarcode = false;
-                        DateTime startDate = record.StatusChangeTime.AddDays(-1);
-                        List<GeneralSignInRecord> recentMemberRecords = Program.signInListService.GetSignInRecords(startDate, DateTime.Now, false, false);
-                        if (recentMemberRecords.Any(o => o.MemberID == record.MemberID))
+                        if (barcodeInput.Length > 5)
                         {
-                            recentMemberRecords = recentMemberRecords.Where(o => o.MemberID == record.MemberID).ToList();
-                            if (recentMemberRecords.First().IsSignIn)
-                            {
-                                //the most recent record was a sign in, so in this case we will sign them out
-                                record.IsSignIn = false;
+                            GeneralSignInRecord record = getRecordFromBarcode(barcodeInput.ToString());
+                            listeningToSignInBarcode = false;
 
-
-                            }
-                            else
-                            {
-                                //the most recent record was NOT a sign in, so lets assume this is
-                                record.IsSignIn = true;
-
-                            }
+                            Program.signInListService.UpsertSignInRecord(record);
+                            updateSignInList();
                         }
-                        else { record.IsSignIn = true; }
-
-                        Program.signInListService.UpsertSignInRecord(record);
-                        updateSignInList();
+                        listeningToSignInBarcode = false;
                     }
-                    listeningToSignInBarcode = false;
+
                 }
+
+                else if (m.Msg == 0x0312 && m.WParam.ToInt32() == mSignOutHotKeyID)
+                {
+                    if (!listeningToBarcode)
+                    {
+                        listeningToSignOutBarcode = true;
+                        startListeningToBarcode = DateTime.Now;
+                        barcodeInput = new StringBuilder();
+                        lblCurrentActivity.Select();
+                    }
+                    else if (listeningToBarcode)
+                    {
+                        if (barcodeInput.Length > 5)
+                        {
+                            GeneralSignInRecord record = getRecordFromBarcode(barcodeInput.ToString());
+                            listeningToSignOutBarcode = false;
+                            Program.signInListService.UpsertSignInRecord(record);
+                            updateSignInList();
+                        }
+                        listeningToSignInBarcode = false;
+                    }
+                }
+                else if (m.Msg == 0x0312 && m.WParam.ToInt32() == mGenericSignInOutHotKeyID)
+                {
+                    if (!listeningToBarcode)
+                    {
+                        listeningToInOutBarcode = true;
+                        startListeningToBarcode = DateTime.Now;
+                        barcodeInput = new StringBuilder();
+                        lblCurrentActivity.Select();
+                    }
+                    else if (listeningToBarcode)
+                    {
+                        if (barcodeInput.Length > 5)
+                        {
+                            GeneralSignInRecord record = getRecordFromBarcode(barcodeInput.ToString());
+                            listeningToInOutBarcode = false;
+                            DateTime startDate = record.StatusChangeTime.AddDays(-1);
+                            List<GeneralSignInRecord> recentMemberRecords = Program.signInListService.GetSignInRecords(startDate, DateTime.Now, false, false);
+                            if (recentMemberRecords.Any(o => o.MemberID == record.MemberID))
+                            {
+                                recentMemberRecords = recentMemberRecords.Where(o => o.MemberID == record.MemberID).ToList();
+                                if (recentMemberRecords.First().IsSignIn)
+                                {
+                                    //the most recent record was a sign in, so in this case we will sign them out
+                                    record.IsSignIn = false;
+
+
+                                }
+                                else
+                                {
+                                    //the most recent record was NOT a sign in, so lets assume this is
+                                    record.IsSignIn = true;
+
+                                }
+                            }
+                            else { record.IsSignIn = true; }
+
+                            Program.signInListService.UpsertSignInRecord(record);
+                            updateSignInList();
+                        }
+                        listeningToSignInBarcode = false;
+                    }
+                }
+
+
             }
-
-
-
             base.WndProc(ref m);
         }
 
@@ -1025,5 +1028,111 @@ namespace SAR_Sign_In_Assist
         {
 
         }
+
+        private void printSelectedRecordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<GeneralSignInRecord> selectedRecords = new List<GeneralSignInRecord>();
+            foreach (DataGridViewRow row in dgvSignInRecords.SelectedRows)
+            {
+                selectedRecords.Add((GeneralSignInRecord)row.DataBoundItem);
+            }
+
+            PrintTheseRecords(selectedRecords);
+        }
+
+        private void printDisplayedRecordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<GeneralSignInRecord> selectedRecords = new List<GeneralSignInRecord>();
+            foreach (DataGridViewRow row in dgvSignInRecords.Rows)
+            {
+                selectedRecords.Add((GeneralSignInRecord)row.DataBoundItem);
+            }
+
+            PrintTheseRecords(selectedRecords);
+        }
+
+        private void generalOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (EditOptionsForm editOptions = new EditOptionsForm())
+            {
+                DialogResult dr = editOptions.ShowDialog();
+                if(dr == DialogResult.OK)
+                {
+                    ListenForQRScanner = Program.generalOptionsService.GetGeneralOptions().DefaultListenForQR;
+                }
+            }
+        }
+
+        EditSavedTeamMembers editSavedTeamMembers = null;
+        private void editSARTeamMembersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(editSavedTeamMembers == null)
+            {
+                editSavedTeamMembers = new EditSavedTeamMembers();
+                editSavedTeamMembers.FormClosed += new FormClosedEventHandler(EditSavedTEamMembersForm_Closed);
+                editSavedTeamMembers.Show();
+            }
+            editSavedTeamMembers.BringToFront();
+        }
+
+        void EditSavedTEamMembersForm_Closed(object sender, FormClosedEventArgs e)
+        {
+            editSavedTeamMembers = null;
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            List<GeneralSignInRecord> selectedRecords = new List<GeneralSignInRecord>();
+            foreach (DataGridViewRow row in dgvSignInRecords.SelectedRows)
+            {
+                selectedRecords.Add((GeneralSignInRecord)row.DataBoundItem);
+            }
+
+            PrintTheseRecords(selectedRecords);
+           
+
+            
+
+        }
+
+        private void PrintTheseRecords(List<GeneralSignInRecord> selectedRecords)
+        {
+            //split records into seperate activities
+            List<Activity> activities = Program.signInListService.GetAllActivities(selectedRecords);
+            List<SignInPDFResult> results = new List<SignInPDFResult>();
+
+            foreach (Activity activity in activities)
+            {
+                List<GeneralSignInRecord> records = selectedRecords.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(activity.ActivityName, StringComparison.InvariantCultureIgnoreCase) && o.StatusChangeTime >= activity.StartDate && o.StatusChangeTime <= activity.EndDate).ToList();
+                SignInPDFResult result = ICS211CheckInListService.createSignInPDF(records, true, false, false);
+                results.Add(result);
+            }
+            if (selectedRecords.Any(o => string.IsNullOrEmpty(o.ActivityName)))
+            {
+                List<GeneralSignInRecord> records = selectedRecords.Where(o => string.IsNullOrEmpty(o.ActivityName)).ToList();
+                SignInPDFResult result = ICS211CheckInListService.createSignInPDF(records, true, false, false);
+                results.Add(result);
+            }
+
+
+            if (results.Where(o => o.Errors.Any()).Any())
+            {
+                StringBuilder errors = new StringBuilder();
+                foreach (SignInPDFResult result in results)
+                {
+                    foreach (string err in result.Errors)
+                    {
+                        errors.Append(err); errors.Append(Environment.NewLine);
+                    }
+                }
+                MessageBox.Show("Some errors occurred:" + Environment.NewLine + errors.ToString());
+            }
+        }
+
+
+
+
+        
+
     }
 }

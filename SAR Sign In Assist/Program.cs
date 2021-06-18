@@ -18,7 +18,7 @@ namespace SAR_Sign_In_Assist
             generalOptionsService = new GeneralOptionsService(true);
             signInListService = new SignInListService();
             ICAClassLibrary.Globals._generalOptionsService = generalOptionsService;
-
+            fileManagementService = new FileManagementService();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -27,7 +27,9 @@ namespace SAR_Sign_In_Assist
 
         private static GeneralOptionsService _generalOptionsService = null;
         private static SignInListService _signInListService = null;
+        private static FileManagementService _fileManagementService = null;
         public static GeneralOptionsService generalOptionsService { get => _generalOptionsService; private set => _generalOptionsService = value; }
         public static SignInListService signInListService { get => _signInListService; private set => _signInListService = value; }
+        public static FileManagementService fileManagementService { get => _fileManagementService; private set => _fileManagementService = value; }
     }
 }

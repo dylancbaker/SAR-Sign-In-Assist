@@ -83,6 +83,26 @@ namespace SAR_Sign_In_Assist.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap d4hsmall {
+            get {
+                object obj = ResourceManager.GetObject("d4hsmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_basic_151_square_edit {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-basic-151-square-edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap glyphicons_basic_152_square_new_window {
             get {
                 object obj = ResourceManager.GetObject("glyphicons-basic-152-square-new-window", resourceCulture);
@@ -96,6 +116,16 @@ namespace SAR_Sign_In_Assist.Properties {
         internal static System.Drawing.Bitmap glyphicons_basic_16_print {
             get {
                 object obj = ResourceManager.GetObject("glyphicons-basic-16-print", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_basic_17_bin {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-basic-17-bin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,6 +196,16 @@ namespace SAR_Sign_In_Assist.Properties {
         internal static System.Drawing.Bitmap glyphicons_basic_302_square_download {
             get {
                 object obj = ResourceManager.GetObject("glyphicons-basic-302-square-download", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap glyphicons_basic_371_plus {
+            get {
+                object obj = ResourceManager.GetObject("glyphicons-basic-371-plus", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

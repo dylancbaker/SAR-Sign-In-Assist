@@ -38,6 +38,19 @@ namespace SAR_Sign_In_Assist.Services
             else { records = records.OrderByDescending(o => o.StatusChangeTime).ToList(); }
             return records;
         }
+        public List<GeneralSignInRecord> GetSignInRecords(Activity activity, bool includeInactive = false, bool sortAscending = true, Guid OrganizationID = new Guid())
+        {
+            loadSignInRecordsByFilename();
+            List<GeneralSignInRecord> records = _generalSignInRecords.Where(o => (o.Active || includeInactive) && o.StatusChangeTime >= activity.StartDate && o.StatusChangeTime <= activity.EndDate && (OrganizationID == Guid.Empty || o.teamMember.OrganizationID == OrganizationID)).ToList();
+            if (!string.IsNullOrEmpty(activity.ActivityName))
+            {
+                records = records.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(activity.ActivityName, StringComparison.InvariantCultureIgnoreCase)).ToList();
+
+            }
+            if (sortAscending) { records = records.OrderBy(o => o.StatusChangeTime).ToList(); }
+            else { records = records.OrderByDescending(o => o.StatusChangeTime).ToList(); }
+            return records;
+        }
 
         public List<MemberStatus> GetMemberStatus(string ActivityName, DateTime startDate, DateTime endDate)
         {
@@ -46,6 +59,12 @@ namespace SAR_Sign_In_Assist.Services
 
         }
 
+        public List<MemberStatus> GetMemberStatus(List<GeneralSignInRecord> fromTheseRecords)
+        {
+            List<MemberStatus> memberStatuses = getAllMemberStatus(fromTheseRecords, true);
+            return memberStatuses;
+
+        }
 
         private List<TeamMember> GetMembersByActivity(string ActivityName, DateTime StartDate, DateTime EndDate)
         {
@@ -54,6 +73,21 @@ namespace SAR_Sign_In_Assist.Services
             foreach(GeneralSignInRecord rec in records)
             {
                 if(!members.Any(o=>o.PersonID == rec.MemberID))
+                {
+                    members.Add(rec.teamMember);
+                }
+            }
+
+            return members;
+        }
+
+        private List<TeamMember> GetMembersFromRecords(List<GeneralSignInRecord> fromTheseRecords)
+        {
+            List<TeamMember> members = new List<TeamMember>();
+           
+            foreach (GeneralSignInRecord rec in fromTheseRecords)
+            {
+                if (!members.Any(o => o.PersonID == rec.MemberID))
                 {
                     members.Add(rec.teamMember);
                 }
@@ -78,12 +112,17 @@ namespace SAR_Sign_In_Assist.Services
             return members;
         }
 
-        public List<Activity> GetAllActivities()
+        public List<Activity> GetAllActivities(List<GeneralSignInRecord> fromTheseRecords = null)
         {
             List<Activity> activities = new List<Activity>();
 
-            List<GeneralSignInRecord> AllSignInRecords = GetSignInRecords(DateTime.MinValue, DateTime.MaxValue);
-            IEnumerable<string> AllActivities = AllSignInRecords.Select(o => o.ActivityName).Distinct();
+            //List<GeneralSignInRecord> AllSignInRecords = GetSignInRecords(DateTime.MinValue, DateTime.MaxValue);
+            if(fromTheseRecords == null || fromTheseRecords.Count == 0)
+            {
+                fromTheseRecords = GetSignInRecords(DateTime.MinValue, DateTime.MaxValue);
+            }
+
+            IEnumerable<string> AllActivities = fromTheseRecords.Select(o => o.ActivityName).Distinct();
             foreach (string s in AllActivities)
             {
                 if (!string.IsNullOrEmpty(s))
@@ -93,17 +132,17 @@ namespace SAR_Sign_In_Assist.Services
                     {
                         Activity a = new Activity();
                         a.ActivityName = s;
-                        a.StartDate = AllSignInRecords.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase)).Min(o => o.StatusChangeTime);
-                        a.EndDate = AllSignInRecords.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase)).Max(o => o.StatusChangeTime);
+                        a.StartDate = fromTheseRecords.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase)).Min(o => o.StatusChangeTime);
+                        a.EndDate = fromTheseRecords.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase)).Max(o => o.StatusChangeTime);
                         activities.Add(a);
                     }
                     else
                     {
-                        List<GeneralSignInRecord> recordsThisActivity = AllSignInRecords.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase)).ToList();
+                        List<GeneralSignInRecord> recordsThisActivity = fromTheseRecords.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase)).ToList();
 
                         for (int x = 1; x < recordsThisActivity.Count; x++)
                         {
-                            TimeSpan gap = AllSignInRecords[x].StatusChangeTime - AllSignInRecords[x - 1].StatusChangeTime;
+                            TimeSpan gap = fromTheseRecords[x].StatusChangeTime - fromTheseRecords[x - 1].StatusChangeTime;
                             if (gap.TotalDays >= 3)
                             {
                                 DateTime endOfLastIteration = DateTime.MinValue;
@@ -114,7 +153,7 @@ namespace SAR_Sign_In_Assist.Services
 
                                 Activity a = new Activity();
                                 a.ActivityName = recordsThisActivity[x - 1].ActivityName;
-                                a.StartDate = AllSignInRecords.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase) && o.StatusChangeTime > endOfLastIteration).Min(o => o.StatusChangeTime);
+                                a.StartDate = fromTheseRecords.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase) && o.StatusChangeTime > endOfLastIteration).Min(o => o.StatusChangeTime);
                                 a.EndDate = recordsThisActivity[x - 1].StatusChangeTime;
                                 activities.Add(a);
                             }
@@ -132,7 +171,7 @@ namespace SAR_Sign_In_Assist.Services
 
                             Activity a = new Activity();
                             a.ActivityName = recordsThisActivity.Last().ActivityName;
-                            a.StartDate = AllSignInRecords.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase) && o.StatusChangeTime > endOfLastIteration).Min(o => o.StatusChangeTime);
+                            a.StartDate = fromTheseRecords.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase) && o.StatusChangeTime > endOfLastIteration).Min(o => o.StatusChangeTime);
                             a.EndDate = recordsThisActivity.Last().StatusChangeTime;
                             activities.Add(a);
                         }
@@ -255,9 +294,100 @@ namespace SAR_Sign_In_Assist.Services
 
 
 
+
+        private List<MemberStatus> getAllMemberStatus(List<GeneralSignInRecord> fromTheseRecords, bool getMultipleLinesAsNeeded = false)
+        {
+            List<MemberStatus> statuses = new List<MemberStatus>();
+            List<TeamMember> members = GetMembersFromRecords(fromTheseRecords);
+            
+
+            foreach (TeamMember member in members)
+            {
+                int signInCount = fromTheseRecords.Where(o => o.IsSignIn && o.teamMember.PersonID == member.PersonID).Count();
+                if (signInCount == 1 || !getMultipleLinesAsNeeded)
+                {
+
+                    MemberStatus status = getMemberStatus(fromTheseRecords, member);
+                    statuses.Add(status);
+                }
+                else
+                {
+                    foreach (SignInRecord record in fromTheseRecords.Where(o => o.IsSignIn && o.teamMember.PersonID == member.PersonID))
+                    {
+
+                        MemberStatus status = getMemberStatus(fromTheseRecords, member,  record);
+                        statuses.Add(status);
+                    }
+
+                }
+            }
+            return statuses;
+        }
+
+        private MemberStatus getMemberStatus(List<GeneralSignInRecord> fromTheseRecords, TeamMember member, SignInRecord signIn = null)
+        {
+            
+
+            MemberStatus status = new MemberStatus();
+            status.setTeamMember(member);
+            if (signIn == null)
+            {
+                if (fromTheseRecords.Where(o => o.MemberID == member.PersonID &&  o.IsSignIn).Any())
+                {
+                    signIn = fromTheseRecords.Where(o => o.MemberID == member.PersonID && o.IsSignIn).OrderByDescending(o => o.StatusChangeTime).First();
+
+                    status.SignInTime = signIn.StatusChangeTime;
+                    if (signIn.TimeOutRequest > DateTime.MinValue) { status.TimeOutRequest = signIn.TimeOutRequest; }
+                    status.KMs = signIn.KMs;
+                }
+                else { status.SignInTime = DateTime.MinValue; }
+            }
+            else { status.SignInTime = signIn.StatusChangeTime; status.KMs = signIn.KMs; }
+
+            if (fromTheseRecords.Where(o => o.MemberID == member.PersonID && o.StatusChangeTime > status.SignInTime && !o.IsSignIn).Any())
+            {
+                SignInRecord signOut = fromTheseRecords.Where(o => o.MemberID == member.PersonID && o.StatusChangeTime > status.SignInTime && !o.IsSignIn).OrderBy(o => o.StatusChangeTime).First();
+                status.SignOutTime = signOut.StatusChangeTime;
+                if (status.KMs <= 0m)
+                {
+                    status.KMs = signOut.KMs;
+                }
+            }
+            else { status.SignOutTime = DateTime.MaxValue; }
+
+
+
+
+            DateTime today = DateTime.Now;
+            if (status.SignOutTime < DateTime.MaxValue && status.SignOutTime > status.SignInTime && status.SignOutTime <= today)
+            {
+                Assignment signedout = new Assignment();
+                signedout.AssignmentName = "Signed Out";
+                signedout.currentStatus = new TeamStatus(38, "", false);
+                status.currentAssignment = signedout;
+            }
+            else if (status.SignOutTime < DateTime.MaxValue && status.SignOutTime > status.SignInTime)
+            {
+                Assignment signedout = new Assignment();
+                signedout.AssignmentName = "Travelling Home";
+                signedout.currentStatus = new TeamStatus(39, "", false);
+                status.currentAssignment = signedout;
+            }
+
+
+            return status;
+        }
+
+
+
+
+
+
         private bool SaveSignInRecords()
         {
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SAR ICS Form Helper");
+            Directory.CreateDirectory(path);
+            path = Path.Combine(path, "SAR Sign-In Assist");
             Directory.CreateDirectory(path);
             bool saveSuccessful = false;
 

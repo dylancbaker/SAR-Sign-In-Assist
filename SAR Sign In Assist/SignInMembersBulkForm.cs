@@ -15,7 +15,7 @@ namespace SAR_Sign_In_Assist
     public partial class SignInMembersBulkForm : Form
     {
         SignInList parent = null;
-
+        public string ActivityName { get => txtCurrentActivity.Text; set => txtCurrentActivity.Text = value; }
         public SignInMembersBulkForm()
         {
             InitializeComponent();

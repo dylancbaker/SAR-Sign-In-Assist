@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ICAClassLibrary.Models;
 using ICAClassLibrary.Utilities;
+using SAR_Sign_In_Assist.Services;
 
 namespace SAR_Sign_In_Assist
 {
@@ -23,13 +24,13 @@ namespace SAR_Sign_In_Assist
 
         private void MemberStatusByActivityForm_Load(object sender, EventArgs e)
         {
-            cboActivity.DataSource = Program.signInListService.GetAllActivities().OrderByDescending(o=>o.EndDate).ToList();
+            cboActivity.DataSource = Program.signInListService.GetAllActivities().OrderByDescending(o => o.EndDate).ToList();
 
         }
 
         private void cboActivity_SelectedIndexChanged(object sender, EventArgs e)
         {
-            updateStatusList();   
+            updateStatusList();
         }
 
         private void updateStatusList()
@@ -63,7 +64,7 @@ namespace SAR_Sign_In_Assist
                     }
 
                 }
-               
+
                 else
                 {
                     foreach (DataGridViewCell c in row.Cells)
@@ -80,7 +81,7 @@ namespace SAR_Sign_In_Assist
 
         private void SignOutTheseMembers(List<MemberStatus> statuses)
         {
-            
+
 
             if (statuses.Any())
             {
@@ -199,13 +200,13 @@ namespace SAR_Sign_In_Assist
 
             List<MemberStatus> records = new List<MemberStatus>();
 
-            
+
             foreach (DataGridViewRow row in dgvMembersOnTask.Rows)
             {
                 MemberStatus rec = (MemberStatus)row.DataBoundItem;
                 records.Add(rec);
             }
-            
+
 
             foreach (MemberStatus record in records)
             {
@@ -215,9 +216,9 @@ namespace SAR_Sign_In_Assist
                 csv.Append(record.MemberName.EscapeQuotes());
                 csv.Append(delimiter);
 
-                 csv.Append(record.SignInTime.ToString("HH:mm")); 
+                csv.Append(record.SignInTime.ToString("HH:mm"));
                 csv.Append(delimiter);
-                csv.Append(record.SignOutTime.ToString("HH:mm")); 
+                csv.Append(record.SignOutTime.ToString("HH:mm"));
                 csv.Append(delimiter);
                 csv.Append(record.KMs.ToString());
                 csv.Append(Environment.NewLine);
@@ -225,5 +226,69 @@ namespace SAR_Sign_In_Assist
             return csv.ToString();
         }
 
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            Activity act = new Activity();
+            if (cboActivity.SelectedItem != null)
+            {
+                act = (Activity)cboActivity.SelectedItem;
+            }
+
+            using (SignInMemberForm signInMemberForm = new SignInMemberForm())
+            {
+                signInMemberForm.ActivityName = act.ActivityName;
+                DialogResult dr = signInMemberForm.ShowDialog(this);
+                if (dr == DialogResult.OK) { updateStatusList(); }
+            }
+        }
+
+        private void btnBulkSignIn_Click(object sender, EventArgs e)
+        {
+            Activity act = new Activity();
+            if (cboActivity.SelectedItem != null)
+            {
+                act = (Activity)cboActivity.SelectedItem;
+            }
+
+            using (SignInMembersBulkForm bulkForm = new SignInMembersBulkForm())
+            {
+                bulkForm.ActivityName = act.ActivityName;
+                DialogResult result = bulkForm.ShowDialog(this);
+                if (result == DialogResult.OK)
+                {
+                    updateStatusList();
+                }
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            Activity act = (Activity)cboActivity.SelectedItem;
+
+            List<GeneralSignInRecord> records = Program.signInListService.GetSignInRecords(act);
+
+
+
+            //split records into seperate activities
+
+
+
+            SignInPDFResult result = ICS211CheckInListService.createSignInPDF(records, true, false, false);
+
+
+
+            if (result.Errors.Any())
+            {
+                StringBuilder errors = new StringBuilder();
+
+                foreach (string err in result.Errors)
+                {
+                    errors.Append(err); errors.Append(Environment.NewLine);
+                }
+
+                MessageBox.Show("Some errors occurred:" + Environment.NewLine + errors.ToString());
+            }
+
+        }
     }
 }
