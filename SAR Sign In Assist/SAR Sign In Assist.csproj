@@ -163,6 +163,12 @@
     <Compile Include="CustomControls\LabelWithImage.Designer.cs">
       <DependentUpon>LabelWithImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="D4HImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="D4HImportForm.Designer.cs">
+      <DependentUpon>D4HImportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditMemberForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControls\LabelWithImage.resx">
       <DependentUpon>LabelWithImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="D4HImportForm.resx">
+      <DependentUpon>D4HImportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditMemberForm.resx">
       <DependentUpon>EditMemberForm.cs</DependentUpon>
@@ -335,6 +344,7 @@
     <None Include="Resources\glyphicons-basic-151-square-edit.png" />
     <None Include="Resources\glyphicons-basic-371-plus.png" />
     <None Include="Resources\d4hsmall.png" />
+    <None Include="Resources\glyphicons-basic-399-import.png" />
     <Content Include="sar_sign_in_assist_logo_IDE_icon.ico" />
   </ItemGroup>
   <ItemGroup>

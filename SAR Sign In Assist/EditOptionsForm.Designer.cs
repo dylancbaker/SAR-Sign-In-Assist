@@ -43,14 +43,17 @@ namespace SAR_Sign_In_Assist
             this.numDefaultPortNumber = new System.Windows.Forms.NumericUpDown();
             this.label26 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numDefaultPortNumber)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_199_save;
-            this.btnSave.Location = new System.Drawing.Point(418, 242);
+            this.btnSave.Location = new System.Drawing.Point(418, 284);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(122, 51);
             this.btnSave.TabIndex = 27;
@@ -64,7 +67,7 @@ namespace SAR_Sign_In_Assist
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_223_chevron_left;
-            this.btnCancel.Location = new System.Drawing.Point(14, 242);
+            this.btnCancel.Location = new System.Drawing.Point(14, 284);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(123, 51);
@@ -79,7 +82,7 @@ namespace SAR_Sign_In_Assist
             this.btnDefaultQRHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDefaultQRHelp.BackgroundImage = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_931_speech_bubble_question;
             this.btnDefaultQRHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDefaultQRHelp.Location = new System.Drawing.Point(509, 50);
+            this.btnDefaultQRHelp.Location = new System.Drawing.Point(509, 97);
             this.btnDefaultQRHelp.Name = "btnDefaultQRHelp";
             this.btnDefaultQRHelp.Size = new System.Drawing.Size(31, 32);
             this.btnDefaultQRHelp.TabIndex = 111;
@@ -90,7 +93,7 @@ namespace SAR_Sign_In_Assist
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(82, 54);
+            this.label23.Location = new System.Drawing.Point(82, 101);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(118, 24);
             this.label23.TabIndex = 109;
@@ -99,7 +102,7 @@ namespace SAR_Sign_In_Assist
             // chkDefaultQRScanner
             // 
             this.chkDefaultQRScanner.AutoSize = true;
-            this.chkDefaultQRScanner.Location = new System.Drawing.Point(206, 52);
+            this.chkDefaultQRScanner.Location = new System.Drawing.Point(206, 99);
             this.chkDefaultQRScanner.Name = "chkDefaultQRScanner";
             this.chkDefaultQRScanner.Size = new System.Drawing.Size(292, 28);
             this.chkDefaultQRScanner.TabIndex = 110;
@@ -113,7 +116,7 @@ namespace SAR_Sign_In_Assist
             this.cboOrganizationName.DisplayMember = "OrganizationName";
             this.cboOrganizationName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboOrganizationName.FormattingEnabled = true;
-            this.cboOrganizationName.Location = new System.Drawing.Point(206, 100);
+            this.cboOrganizationName.Location = new System.Drawing.Point(206, 147);
             this.cboOrganizationName.Name = "cboOrganizationName";
             this.cboOrganizationName.Size = new System.Drawing.Size(297, 32);
             this.cboOrganizationName.TabIndex = 113;
@@ -124,7 +127,7 @@ namespace SAR_Sign_In_Assist
             this.btnHelpHomeGroupName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHelpHomeGroupName.BackgroundImage = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_931_speech_bubble_question;
             this.btnHelpHomeGroupName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnHelpHomeGroupName.Location = new System.Drawing.Point(509, 100);
+            this.btnHelpHomeGroupName.Location = new System.Drawing.Point(509, 147);
             this.btnHelpHomeGroupName.Name = "btnHelpHomeGroupName";
             this.btnHelpHomeGroupName.Size = new System.Drawing.Size(31, 32);
             this.btnHelpHomeGroupName.TabIndex = 114;
@@ -135,7 +138,7 @@ namespace SAR_Sign_In_Assist
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(26, 104);
+            this.label18.Location = new System.Drawing.Point(26, 151);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(174, 24);
             this.label18.TabIndex = 112;
@@ -145,7 +148,7 @@ namespace SAR_Sign_In_Assist
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(12, 150);
+            this.label25.Location = new System.Drawing.Point(12, 197);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(212, 29);
             this.label25.TabIndex = 115;
@@ -156,7 +159,7 @@ namespace SAR_Sign_In_Assist
             this.btnHelpDefaultPort.BackColor = System.Drawing.Color.Transparent;
             this.btnHelpDefaultPort.BackgroundImage = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_931_speech_bubble_question;
             this.btnHelpDefaultPort.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnHelpDefaultPort.Location = new System.Drawing.Point(332, 180);
+            this.btnHelpDefaultPort.Location = new System.Drawing.Point(332, 227);
             this.btnHelpDefaultPort.Name = "btnHelpDefaultPort";
             this.btnHelpDefaultPort.Size = new System.Drawing.Size(31, 32);
             this.btnHelpDefaultPort.TabIndex = 118;
@@ -166,7 +169,7 @@ namespace SAR_Sign_In_Assist
             // 
             // numDefaultPortNumber
             // 
-            this.numDefaultPortNumber.Location = new System.Drawing.Point(206, 182);
+            this.numDefaultPortNumber.Location = new System.Drawing.Point(206, 229);
             this.numDefaultPortNumber.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -184,7 +187,7 @@ namespace SAR_Sign_In_Assist
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(101, 184);
+            this.label26.Location = new System.Drawing.Point(101, 231);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(99, 24);
             this.label26.TabIndex = 116;
@@ -194,17 +197,40 @@ namespace SAR_Sign_In_Assist
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 9);
+            this.label1.Location = new System.Drawing.Point(9, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(208, 29);
             this.label1.TabIndex = 119;
             this.label1.Text = "General Settings";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Info;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(14, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(526, 41);
+            this.panel1.TabIndex = 120;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Location = new System.Drawing.Point(-1, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(526, 39);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Note: changes here will also impact ICA on this computer.";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // EditOptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(552, 307);
+            this.ClientSize = new System.Drawing.Size(552, 349);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnHelpDefaultPort);
             this.Controls.Add(this.numDefaultPortNumber);
@@ -225,6 +251,7 @@ namespace SAR_Sign_In_Assist
             this.Text = "Options";
             this.Load += new System.EventHandler(this.EditOptionsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numDefaultPortNumber)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,5 +272,7 @@ namespace SAR_Sign_In_Assist
         private System.Windows.Forms.NumericUpDown numDefaultPortNumber;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
     }
 }

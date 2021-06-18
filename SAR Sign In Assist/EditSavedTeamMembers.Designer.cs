@@ -47,8 +47,10 @@ namespace SAR_Sign_In_Assist
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
             this.cboSARGroup = new System.Windows.Forms.ComboBox();
-            this.btnImportFromD4H = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnImportFromD4H = new System.Windows.Forms.Button();
             this.btnAddNew = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -61,6 +63,7 @@ namespace SAR_Sign_In_Assist
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvTeamMembers
@@ -89,7 +92,7 @@ namespace SAR_Sign_In_Assist
             this.dgvTeamMembers.RowHeadersVisible = false;
             this.dgvTeamMembers.RowTemplate.Height = 30;
             this.dgvTeamMembers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTeamMembers.Size = new System.Drawing.Size(777, 397);
+            this.dgvTeamMembers.Size = new System.Drawing.Size(809, 397);
             this.dgvTeamMembers.TabIndex = 50;
             this.dgvTeamMembers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTeamMembers_CellDoubleClick);
             this.dgvTeamMembers.SelectionChanged += new System.EventHandler(this.dgvTeamMembers_SelectionChanged);
@@ -225,7 +228,7 @@ namespace SAR_Sign_In_Assist
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(777, 539);
+            this.splitContainer1.Size = new System.Drawing.Size(809, 539);
             this.splitContainer1.SplitterDistance = 60;
             this.splitContainer1.TabIndex = 59;
             // 
@@ -247,24 +250,10 @@ namespace SAR_Sign_In_Assist
             this.cboSARGroup.FormattingEnabled = true;
             this.cboSARGroup.Location = new System.Drawing.Point(82, 16);
             this.cboSARGroup.Name = "cboSARGroup";
-            this.cboSARGroup.Size = new System.Drawing.Size(419, 32);
+            this.cboSARGroup.Size = new System.Drawing.Size(451, 32);
             this.cboSARGroup.TabIndex = 61;
             this.cboSARGroup.ValueMember = "OrganizationID";
             this.cboSARGroup.SelectedIndexChanged += new System.EventHandler(this.cboSARGroup_SelectedIndexChanged);
-            // 
-            // btnImportFromD4H
-            // 
-            this.btnImportFromD4H.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImportFromD4H.Image = global::SAR_Sign_In_Assist.Properties.Resources.d4hsmall;
-            this.btnImportFromD4H.Location = new System.Drawing.Point(519, 4);
-            this.btnImportFromD4H.Name = "btnImportFromD4H";
-            this.btnImportFromD4H.Size = new System.Drawing.Size(255, 54);
-            this.btnImportFromD4H.TabIndex = 0;
-            this.btnImportFromD4H.Text = "Import from D4H";
-            this.btnImportFromD4H.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImportFromD4H.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnImportFromD4H.UseVisualStyleBackColor = true;
-            this.btnImportFromD4H.Click += new System.EventHandler(this.btnImportFromD4H_Click);
             // 
             // splitContainer2
             // 
@@ -281,12 +270,49 @@ namespace SAR_Sign_In_Assist
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.panel1);
             this.splitContainer2.Panel2.Controls.Add(this.btnAddNew);
             this.splitContainer2.Panel2.Controls.Add(this.btnDelete);
             this.splitContainer2.Panel2.Controls.Add(this.btnEdit);
-            this.splitContainer2.Size = new System.Drawing.Size(777, 475);
+            this.splitContainer2.Size = new System.Drawing.Size(809, 475);
             this.splitContainer2.SplitterDistance = 397;
             this.splitContainer2.TabIndex = 60;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Info;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(234, 11);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(340, 54);
+            this.panel1.TabIndex = 121;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Location = new System.Drawing.Point(-1, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(336, 52);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Note: changes here will also impact ICA on this computer.";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnImportFromD4H
+            // 
+            this.btnImportFromD4H.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImportFromD4H.Image = global::SAR_Sign_In_Assist.Properties.Resources.d4hsmall;
+            this.btnImportFromD4H.Location = new System.Drawing.Point(551, 4);
+            this.btnImportFromD4H.Name = "btnImportFromD4H";
+            this.btnImportFromD4H.Size = new System.Drawing.Size(255, 54);
+            this.btnImportFromD4H.TabIndex = 0;
+            this.btnImportFromD4H.Text = "Import from D4H";
+            this.btnImportFromD4H.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImportFromD4H.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnImportFromD4H.UseVisualStyleBackColor = true;
+            this.btnImportFromD4H.Click += new System.EventHandler(this.btnImportFromD4H_Click);
             // 
             // btnAddNew
             // 
@@ -305,7 +331,7 @@ namespace SAR_Sign_In_Assist
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_17_bin;
-            this.btnDelete.Location = new System.Drawing.Point(645, 11);
+            this.btnDelete.Location = new System.Drawing.Point(677, 11);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(120, 54);
             this.btnDelete.TabIndex = 54;
@@ -318,7 +344,7 @@ namespace SAR_Sign_In_Assist
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEdit.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_151_square_edit;
-            this.btnEdit.Location = new System.Drawing.Point(548, 11);
+            this.btnEdit.Location = new System.Drawing.Point(580, 11);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(91, 54);
             this.btnEdit.TabIndex = 53;
@@ -331,7 +357,7 @@ namespace SAR_Sign_In_Assist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(777, 539);
+            this.ClientSize = new System.Drawing.Size(809, 539);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -349,6 +375,7 @@ namespace SAR_Sign_In_Assist
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -376,5 +403,7 @@ namespace SAR_Sign_In_Assist
         private System.Windows.Forms.Button btnImportFromD4H;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboSARGroup;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
     }
 }

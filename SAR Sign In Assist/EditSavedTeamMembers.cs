@@ -96,7 +96,14 @@ namespace SAR_Sign_In_Assist
 
         private void btnImportFromD4H_Click(object sender, EventArgs e)
         {
-
+            using (D4HImportForm importForm = new D4HImportForm())
+            {
+                DialogResult dr = importForm.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    updateMemberList();
+                }
+            }
         }
 
         private void dgvTeamMembers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
