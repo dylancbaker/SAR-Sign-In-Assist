@@ -30,8 +30,8 @@ namespace SAR_Sign_In_Assist
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignInList));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +40,8 @@ namespace SAR_Sign_In_Assist
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generalOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editSARTeamMembersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusByActivityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printSelectedRecordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printDisplayedRecordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +50,8 @@ namespace SAR_Sign_In_Assist
             this.exportDisplayedRecordsToCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.networkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.networkSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendNetworkTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.requestTaskFromServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkForAppUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,42 +67,42 @@ namespace SAR_Sign_In_Assist
             this.sendSignInRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeSignInRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.pnlFilter = new System.Windows.Forms.Panel();
-            this.btnExpandFilterSort = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.grpFrom = new System.Windows.Forms.GroupBox();
             this.rbFromDate = new System.Windows.Forms.RadioButton();
             this.rbFromLast24 = new System.Windows.Forms.RadioButton();
             this.datFromDate = new System.Windows.Forms.DateTimePicker();
+            this.btnExpandFilterSort = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.cboSARGroup = new System.Windows.Forms.ComboBox();
             this.grpTo = new System.Windows.Forms.GroupBox();
             this.rbToDate = new System.Windows.Forms.RadioButton();
             this.rbToNow = new System.Windows.Forms.RadioButton();
             this.datToDate = new System.Windows.Forms.DateTimePicker();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnSignOut = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnBulkSignIn = new System.Windows.Forms.Button();
             this.btnSignIn = new System.Windows.Forms.Button();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.btnStatusByActivity = new System.Windows.Forms.Button();
-            this.chkRopeRescue = new System.Windows.Forms.CheckBox();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.label4 = new System.Windows.Forms.Label();
+            this.numOperationalPeriod = new System.Windows.Forms.NumericUpDown();
+            this.chkAutoSendToICA = new System.Windows.Forms.CheckBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.picICAConnection = new System.Windows.Forms.PictureBox();
             this.btnQRScannerHelp = new System.Windows.Forms.Button();
             this.txtCurrentActivity = new System.Windows.Forms.TextBox();
             this.lblCurrentActivity = new System.Windows.Forms.Label();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnHide = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.btnSendSelected = new System.Windows.Forms.Button();
-            this.btnRequestUpdates = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.fbdSaveLocation = new System.Windows.Forms.FolderBrowserDialog();
             this.menuStrip1.SuspendLayout();
@@ -115,6 +119,7 @@ namespace SAR_Sign_In_Assist
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numOperationalPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picICAConnection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -128,12 +133,13 @@ namespace SAR_Sign_In_Assist
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
+            this.viewToolStripMenuItem,
             this.reportExportToolStripMenuItem,
             this.networkToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1122, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1104, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -183,6 +189,21 @@ namespace SAR_Sign_In_Assist
             this.editSARTeamMembersToolStripMenuItem.Text = "Edit SAR Team Members";
             this.editSARTeamMembersToolStripMenuItem.Click += new System.EventHandler(this.editSARTeamMembersToolStripMenuItem_Click);
             // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusByActivityToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // statusByActivityToolStripMenuItem
+            // 
+            this.statusByActivityToolStripMenuItem.Name = "statusByActivityToolStripMenuItem";
+            this.statusByActivityToolStripMenuItem.Size = new System.Drawing.Size(225, 30);
+            this.statusByActivityToolStripMenuItem.Text = "Status by Activity";
+            this.statusByActivityToolStripMenuItem.Click += new System.EventHandler(this.statusByActivityToolStripMenuItem_Click);
+            // 
             // reportExportToolStripMenuItem
             // 
             this.reportExportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -231,7 +252,9 @@ namespace SAR_Sign_In_Assist
             // networkToolStripMenuItem
             // 
             this.networkToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.networkSettingsToolStripMenuItem});
+            this.networkSettingsToolStripMenuItem,
+            this.sendNetworkTestToolStripMenuItem,
+            this.requestTaskFromServerToolStripMenuItem});
             this.networkToolStripMenuItem.Name = "networkToolStripMenuItem";
             this.networkToolStripMenuItem.Size = new System.Drawing.Size(95, 29);
             this.networkToolStripMenuItem.Text = "Network";
@@ -239,8 +262,23 @@ namespace SAR_Sign_In_Assist
             // networkSettingsToolStripMenuItem
             // 
             this.networkSettingsToolStripMenuItem.Name = "networkSettingsToolStripMenuItem";
-            this.networkSettingsToolStripMenuItem.Size = new System.Drawing.Size(227, 30);
+            this.networkSettingsToolStripMenuItem.Size = new System.Drawing.Size(293, 30);
             this.networkSettingsToolStripMenuItem.Text = "Network Settings";
+            this.networkSettingsToolStripMenuItem.Click += new System.EventHandler(this.networkSettingsToolStripMenuItem_Click);
+            // 
+            // sendNetworkTestToolStripMenuItem
+            // 
+            this.sendNetworkTestToolStripMenuItem.Name = "sendNetworkTestToolStripMenuItem";
+            this.sendNetworkTestToolStripMenuItem.Size = new System.Drawing.Size(293, 30);
+            this.sendNetworkTestToolStripMenuItem.Text = "Send Network Test";
+            this.sendNetworkTestToolStripMenuItem.Click += new System.EventHandler(this.sendNetworkTestToolStripMenuItem_Click);
+            // 
+            // requestTaskFromServerToolStripMenuItem
+            // 
+            this.requestTaskFromServerToolStripMenuItem.Name = "requestTaskFromServerToolStripMenuItem";
+            this.requestTaskFromServerToolStripMenuItem.Size = new System.Drawing.Size(293, 30);
+            this.requestTaskFromServerToolStripMenuItem.Text = "Request Task from Server";
+            this.requestTaskFromServerToolStripMenuItem.Click += new System.EventHandler(this.requestTaskFromServerToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -291,7 +329,7 @@ namespace SAR_Sign_In_Assist
             this.dgvSignInRecords.RowHeadersVisible = false;
             this.dgvSignInRecords.RowTemplate.Height = 35;
             this.dgvSignInRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSignInRecords.Size = new System.Drawing.Size(873, 504);
+            this.dgvSignInRecords.Size = new System.Drawing.Size(852, 504);
             this.dgvSignInRecords.TabIndex = 1;
             this.dgvSignInRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSignInRecords_CellDoubleClick);
             this.dgvSignInRecords.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSignInRecords_CellFormatting);
@@ -327,9 +365,9 @@ namespace SAR_Sign_In_Assist
             // colSignInTime
             // 
             this.colSignInTime.DataPropertyName = "SignInTime";
-            dataGridViewCellStyle3.Format = "yyyy-MMM-dd HH:mm";
-            dataGridViewCellStyle3.NullValue = "00:00";
-            this.colSignInTime.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Format = "yyyy-MMM-dd HH:mm";
+            dataGridViewCellStyle7.NullValue = "00:00";
+            this.colSignInTime.DefaultCellStyle = dataGridViewCellStyle7;
             this.colSignInTime.HeaderText = "Sign In/Out Time";
             this.colSignInTime.Name = "colSignInTime";
             this.colSignInTime.ReadOnly = true;
@@ -338,8 +376,8 @@ namespace SAR_Sign_In_Assist
             // colTimeOutRequest
             // 
             this.colTimeOutRequest.DataPropertyName = "MustBeOutTimeOrBlank";
-            dataGridViewCellStyle4.NullValue = null;
-            this.colTimeOutRequest.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.NullValue = null;
+            this.colTimeOutRequest.DefaultCellStyle = dataGridViewCellStyle8;
             this.colTimeOutRequest.HeaderText = "Must Be Out";
             this.colTimeOutRequest.Name = "colTimeOutRequest";
             this.colTimeOutRequest.ReadOnly = true;
@@ -386,59 +424,19 @@ namespace SAR_Sign_In_Assist
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.pnlFilter);
             this.splitContainer1.Panel2.Controls.Add(this.btnExport);
             this.splitContainer1.Panel2.Controls.Add(this.btnPrint);
             this.splitContainer1.Panel2.Controls.Add(this.label5);
-            this.splitContainer1.Panel2.Controls.Add(this.pnlFilter);
             this.splitContainer1.Panel2.Controls.Add(this.btnSignOut);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Panel2.Controls.Add(this.btnBulkSignIn);
             this.splitContainer1.Panel2.Controls.Add(this.btnSignIn);
-            this.splitContainer1.Size = new System.Drawing.Size(1122, 504);
-            this.splitContainer1.SplitterDistance = 873;
+            this.splitContainer1.Panel2.Controls.Add(this.btnStatusByActivity);
+            this.splitContainer1.Size = new System.Drawing.Size(1104, 504);
+            this.splitContainer1.SplitterDistance = 852;
             this.splitContainer1.TabIndex = 2;
-            // 
-            // btnExport
-            // 
-            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExport.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_filetypes_9_file_spreadsheet;
-            this.btnExport.Location = new System.Drawing.Point(8, 441);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(225, 50);
-            this.btnExport.TabIndex = 28;
-            this.btnExport.Text = "Export to CSV";
-            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_16_print;
-            this.btnPrint.Location = new System.Drawing.Point(8, 385);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(225, 50);
-            this.btnPrint.TabIndex = 27;
-            this.btnPrint.Text = "Print Selected";
-            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 353);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(230, 29);
-            this.label5.TabIndex = 26;
-            this.label5.Text = "Report";
             // 
             // pnlFilter
             // 
@@ -446,55 +444,16 @@ namespace SAR_Sign_In_Assist
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlFilter.BackColor = System.Drawing.Color.White;
             this.pnlFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlFilter.Controls.Add(this.grpFrom);
             this.pnlFilter.Controls.Add(this.btnExpandFilterSort);
             this.pnlFilter.Controls.Add(this.label2);
             this.pnlFilter.Controls.Add(this.label3);
-            this.pnlFilter.Controls.Add(this.grpFrom);
             this.pnlFilter.Controls.Add(this.cboSARGroup);
             this.pnlFilter.Controls.Add(this.grpTo);
             this.pnlFilter.Location = new System.Drawing.Point(2, 3);
             this.pnlFilter.Name = "pnlFilter";
-            this.pnlFilter.Size = new System.Drawing.Size(240, 62);
+            this.pnlFilter.Size = new System.Drawing.Size(243, 62);
             this.pnlFilter.TabIndex = 25;
-            // 
-            // btnExpandFilterSort
-            // 
-            this.btnExpandFilterSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExpandFilterSort.BackColor = System.Drawing.Color.LightGray;
-            this.btnExpandFilterSort.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExpandFilterSort.BackgroundImage")));
-            this.btnExpandFilterSort.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnExpandFilterSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExpandFilterSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExpandFilterSort.Location = new System.Drawing.Point(254, 9);
-            this.btnExpandFilterSort.Name = "btnExpandFilterSort";
-            this.btnExpandFilterSort.Size = new System.Drawing.Size(25, 25);
-            this.btnExpandFilterSort.TabIndex = 31;
-            this.btnExpandFilterSort.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnExpandFilterSort.UseVisualStyleBackColor = false;
-            this.btnExpandFilterSort.Click += new System.EventHandler(this.btnExpandFilterSort_Click);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(4, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(245, 29);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "Filter Sign-Ins";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 252);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(254, 29);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "SAR Group";
             // 
             // grpFrom
             // 
@@ -540,6 +499,45 @@ namespace SAR_Sign_In_Assist
             this.datFromDate.Size = new System.Drawing.Size(195, 29);
             this.datFromDate.TabIndex = 19;
             this.datFromDate.ValueChanged += new System.EventHandler(this.datFromDate_ValueChanged);
+            // 
+            // btnExpandFilterSort
+            // 
+            this.btnExpandFilterSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExpandFilterSort.BackColor = System.Drawing.Color.LightGray;
+            this.btnExpandFilterSort.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnExpandFilterSort.BackgroundImage")));
+            this.btnExpandFilterSort.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExpandFilterSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExpandFilterSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExpandFilterSort.Location = new System.Drawing.Point(205, 13);
+            this.btnExpandFilterSort.Name = "btnExpandFilterSort";
+            this.btnExpandFilterSort.Size = new System.Drawing.Size(25, 25);
+            this.btnExpandFilterSort.TabIndex = 31;
+            this.btnExpandFilterSort.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnExpandFilterSort.UseVisualStyleBackColor = false;
+            this.btnExpandFilterSort.Click += new System.EventHandler(this.btnExpandFilterSort_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(4, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(198, 29);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Filter Sign-Ins";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 252);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(219, 29);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "SAR Group";
             // 
             // cboSARGroup
             // 
@@ -598,6 +596,47 @@ namespace SAR_Sign_In_Assist
             this.datToDate.TabIndex = 20;
             this.datToDate.ValueChanged += new System.EventHandler(this.datToDate_ValueChanged);
             // 
+            // btnExport
+            // 
+            this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExport.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_filetypes_9_file_spreadsheet;
+            this.btnExport.Location = new System.Drawing.Point(8, 441);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(228, 50);
+            this.btnExport.TabIndex = 28;
+            this.btnExport.Text = "Export to CSV";
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_16_print;
+            this.btnPrint.Location = new System.Drawing.Point(8, 385);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(228, 50);
+            this.btnPrint.TabIndex = 27;
+            this.btnPrint.Text = "Print Selected";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 353);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(233, 29);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Report";
+            // 
             // btnSignOut
             // 
             this.btnSignOut.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -605,7 +644,7 @@ namespace SAR_Sign_In_Assist
             this.btnSignOut.Image = ((System.Drawing.Image)(resources.GetObject("btnSignOut.Image")));
             this.btnSignOut.Location = new System.Drawing.Point(8, 300);
             this.btnSignOut.Name = "btnSignOut";
-            this.btnSignOut.Size = new System.Drawing.Size(225, 50);
+            this.btnSignOut.Size = new System.Drawing.Size(228, 50);
             this.btnSignOut.TabIndex = 17;
             this.btnSignOut.Text = "Sign Out Selected";
             this.btnSignOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -620,7 +659,7 @@ namespace SAR_Sign_In_Assist
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(8, 266);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(230, 29);
+            this.label1.Size = new System.Drawing.Size(233, 29);
             this.label1.TabIndex = 16;
             this.label1.Text = "Sign Out";
             // 
@@ -631,7 +670,7 @@ namespace SAR_Sign_In_Assist
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(8, 124);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(220, 29);
+            this.label6.Size = new System.Drawing.Size(223, 29);
             this.label6.TabIndex = 14;
             this.label6.Text = "Sign In";
             // 
@@ -642,7 +681,7 @@ namespace SAR_Sign_In_Assist
             this.btnBulkSignIn.Image = ((System.Drawing.Image)(resources.GetObject("btnBulkSignIn.Image")));
             this.btnBulkSignIn.Location = new System.Drawing.Point(9, 212);
             this.btnBulkSignIn.Name = "btnBulkSignIn";
-            this.btnBulkSignIn.Size = new System.Drawing.Size(225, 50);
+            this.btnBulkSignIn.Size = new System.Drawing.Size(228, 50);
             this.btnBulkSignIn.TabIndex = 15;
             this.btnBulkSignIn.Text = "Bulk Sign In";
             this.btnBulkSignIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -657,13 +696,27 @@ namespace SAR_Sign_In_Assist
             this.btnSignIn.Image = ((System.Drawing.Image)(resources.GetObject("btnSignIn.Image")));
             this.btnSignIn.Location = new System.Drawing.Point(8, 156);
             this.btnSignIn.Name = "btnSignIn";
-            this.btnSignIn.Size = new System.Drawing.Size(225, 50);
+            this.btnSignIn.Size = new System.Drawing.Size(228, 50);
             this.btnSignIn.TabIndex = 13;
             this.btnSignIn.Text = "Sign In";
             this.btnSignIn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSignIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSignIn.UseVisualStyleBackColor = true;
             this.btnSignIn.Click += new System.EventHandler(this.btnSignIn_Click);
+            // 
+            // btnStatusByActivity
+            // 
+            this.btnStatusByActivity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStatusByActivity.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_152_square_new_window;
+            this.btnStatusByActivity.Location = new System.Drawing.Point(10, 71);
+            this.btnStatusByActivity.Name = "btnStatusByActivity";
+            this.btnStatusByActivity.Size = new System.Drawing.Size(226, 50);
+            this.btnStatusByActivity.TabIndex = 2;
+            this.btnStatusByActivity.Text = "Status by Activity";
+            this.btnStatusByActivity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnStatusByActivity.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStatusByActivity.UseVisualStyleBackColor = true;
+            this.btnStatusByActivity.Click += new System.EventHandler(this.btnStatusByActivity_Click);
             // 
             // splitContainer2
             // 
@@ -676,8 +729,9 @@ namespace SAR_Sign_In_Assist
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.btnStatusByActivity);
-            this.splitContainer2.Panel1.Controls.Add(this.chkRopeRescue);
+            this.splitContainer2.Panel1.Controls.Add(this.label4);
+            this.splitContainer2.Panel1.Controls.Add(this.numOperationalPeriod);
+            this.splitContainer2.Panel1.Controls.Add(this.chkAutoSendToICA);
             this.splitContainer2.Panel1.Controls.Add(this.picICAConnection);
             this.splitContainer2.Panel1.Controls.Add(this.btnQRScannerHelp);
             this.splitContainer2.Panel1.Controls.Add(this.txtCurrentActivity);
@@ -686,47 +740,61 @@ namespace SAR_Sign_In_Assist
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(1122, 603);
+            this.splitContainer2.Size = new System.Drawing.Size(1104, 603);
             this.splitContainer2.SplitterDistance = 47;
             this.splitContainer2.TabIndex = 3;
             this.splitContainer2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.splitContainer2_KeyPress);
             // 
-            // btnStatusByActivity
+            // label4
             // 
-            this.btnStatusByActivity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStatusByActivity.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_152_square_new_window;
-            this.btnStatusByActivity.Location = new System.Drawing.Point(567, 4);
-            this.btnStatusByActivity.Name = "btnStatusByActivity";
-            this.btnStatusByActivity.Size = new System.Drawing.Size(249, 38);
-            this.btnStatusByActivity.TabIndex = 2;
-            this.btnStatusByActivity.Text = "Status by Activity";
-            this.btnStatusByActivity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnStatusByActivity.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnStatusByActivity.UseVisualStyleBackColor = true;
-            this.btnStatusByActivity.Click += new System.EventHandler(this.btnStatusByActivity_Click);
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(492, 11);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(167, 24);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Operational Period";
             // 
-            // chkRopeRescue
+            // numOperationalPeriod
             // 
-            this.chkRopeRescue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkRopeRescue.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkRopeRescue.AutoSize = true;
-            this.chkRopeRescue.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-            this.chkRopeRescue.FlatAppearance.BorderSize = 0;
-            this.chkRopeRescue.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
-            this.chkRopeRescue.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
-            this.chkRopeRescue.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
-            this.chkRopeRescue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkRopeRescue.ImageIndex = 0;
-            this.chkRopeRescue.ImageList = this.imageList1;
-            this.chkRopeRescue.Location = new System.Drawing.Point(867, 6);
-            this.chkRopeRescue.Margin = new System.Windows.Forms.Padding(6);
-            this.chkRopeRescue.Name = "chkRopeRescue";
-            this.chkRopeRescue.Size = new System.Drawing.Size(248, 34);
-            this.chkRopeRescue.TabIndex = 52;
-            this.chkRopeRescue.Text = "Automatically send to ICA";
-            this.chkRopeRescue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.chkRopeRescue.UseVisualStyleBackColor = true;
-            this.chkRopeRescue.CheckedChanged += new System.EventHandler(this.chkRopeRescue_CheckedChanged);
+            this.numOperationalPeriod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.numOperationalPeriod.Location = new System.Drawing.Point(665, 9);
+            this.numOperationalPeriod.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numOperationalPeriod.Name = "numOperationalPeriod";
+            this.numOperationalPeriod.Size = new System.Drawing.Size(77, 29);
+            this.numOperationalPeriod.TabIndex = 5;
+            this.numOperationalPeriod.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // chkAutoSendToICA
+            // 
+            this.chkAutoSendToICA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkAutoSendToICA.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkAutoSendToICA.AutoSize = true;
+            this.chkAutoSendToICA.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.chkAutoSendToICA.FlatAppearance.BorderSize = 0;
+            this.chkAutoSendToICA.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.chkAutoSendToICA.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Control;
+            this.chkAutoSendToICA.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.Control;
+            this.chkAutoSendToICA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkAutoSendToICA.ImageIndex = 0;
+            this.chkAutoSendToICA.ImageList = this.imageList1;
+            this.chkAutoSendToICA.Location = new System.Drawing.Point(849, 6);
+            this.chkAutoSendToICA.Margin = new System.Windows.Forms.Padding(6);
+            this.chkAutoSendToICA.Name = "chkAutoSendToICA";
+            this.chkAutoSendToICA.Size = new System.Drawing.Size(248, 34);
+            this.chkAutoSendToICA.TabIndex = 52;
+            this.chkAutoSendToICA.Text = "Automatically send to ICA";
+            this.chkAutoSendToICA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.chkAutoSendToICA.UseVisualStyleBackColor = true;
+            this.chkAutoSendToICA.CheckedChanged += new System.EventHandler(this.chkRopeRescue_CheckedChanged);
             // 
             // imageList1
             // 
@@ -739,12 +807,13 @@ namespace SAR_Sign_In_Assist
             // 
             this.picICAConnection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picICAConnection.Image = global::SAR_Sign_In_Assist.Properties.Resources.glyphicons_basic_74_NoWifi1;
-            this.picICAConnection.Location = new System.Drawing.Point(823, 6);
+            this.picICAConnection.Location = new System.Drawing.Point(805, 6);
             this.picICAConnection.Name = "picICAConnection";
             this.picICAConnection.Size = new System.Drawing.Size(35, 35);
             this.picICAConnection.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picICAConnection.TabIndex = 51;
             this.picICAConnection.TabStop = false;
+            this.picICAConnection.Click += new System.EventHandler(this.picICAConnection_Click);
             // 
             // btnQRScannerHelp
             // 
@@ -752,7 +821,7 @@ namespace SAR_Sign_In_Assist
             this.btnQRScannerHelp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnQRScannerHelp.BackgroundImage")));
             this.btnQRScannerHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnQRScannerHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQRScannerHelp.Location = new System.Drawing.Point(486, 9);
+            this.btnQRScannerHelp.Location = new System.Drawing.Point(458, 9);
             this.btnQRScannerHelp.Name = "btnQRScannerHelp";
             this.btnQRScannerHelp.Size = new System.Drawing.Size(28, 28);
             this.btnQRScannerHelp.TabIndex = 49;
@@ -765,7 +834,7 @@ namespace SAR_Sign_In_Assist
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCurrentActivity.Location = new System.Drawing.Point(143, 9);
             this.txtCurrentActivity.Name = "txtCurrentActivity";
-            this.txtCurrentActivity.Size = new System.Drawing.Size(337, 29);
+            this.txtCurrentActivity.Size = new System.Drawing.Size(309, 29);
             this.txtCurrentActivity.TabIndex = 1;
             // 
             // lblCurrentActivity
@@ -793,22 +862,13 @@ namespace SAR_Sign_In_Assist
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.textBox1);
             this.splitContainer3.Panel2.Controls.Add(this.btnHide);
             this.splitContainer3.Panel2.Controls.Add(this.btnEdit);
             this.splitContainer3.Panel2.Controls.Add(this.btnView);
             this.splitContainer3.Panel2.Controls.Add(this.btnSendSelected);
-            this.splitContainer3.Panel2.Controls.Add(this.btnRequestUpdates);
-            this.splitContainer3.Size = new System.Drawing.Size(1122, 552);
+            this.splitContainer3.Size = new System.Drawing.Size(1104, 552);
             this.splitContainer3.SplitterDistance = 504;
             this.splitContainer3.TabIndex = 3;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(250, 7);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(304, 29);
-            this.textBox1.TabIndex = 7;
             // 
             // btnHide
             // 
@@ -845,26 +905,14 @@ namespace SAR_Sign_In_Assist
             this.btnSendSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSendSelected.Image = ((System.Drawing.Image)(resources.GetObject("btnSendSelected.Image")));
             this.btnSendSelected.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSendSelected.Location = new System.Drawing.Point(560, 2);
+            this.btnSendSelected.Location = new System.Drawing.Point(845, 2);
             this.btnSendSelected.Name = "btnSendSelected";
             this.btnSendSelected.Size = new System.Drawing.Size(256, 41);
             this.btnSendSelected.TabIndex = 2;
             this.btnSendSelected.Text = "Send Selected to ICA";
             this.btnSendSelected.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSendSelected.UseVisualStyleBackColor = true;
-            // 
-            // btnRequestUpdates
-            // 
-            this.btnRequestUpdates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRequestUpdates.Image = ((System.Drawing.Image)(resources.GetObject("btnRequestUpdates.Image")));
-            this.btnRequestUpdates.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRequestUpdates.Location = new System.Drawing.Point(822, 1);
-            this.btnRequestUpdates.Name = "btnRequestUpdates";
-            this.btnRequestUpdates.Size = new System.Drawing.Size(288, 42);
-            this.btnRequestUpdates.TabIndex = 3;
-            this.btnRequestUpdates.Text = "Request Updates from ICA";
-            this.btnRequestUpdates.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRequestUpdates.UseVisualStyleBackColor = true;
+            this.btnSendSelected.Click += new System.EventHandler(this.btnSendSelected_Click);
             // 
             // saveFileDialog1
             // 
@@ -875,7 +923,7 @@ namespace SAR_Sign_In_Assist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1122, 636);
+            this.ClientSize = new System.Drawing.Size(1104, 636);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -885,6 +933,7 @@ namespace SAR_Sign_In_Assist
             this.MinimumSize = new System.Drawing.Size(995, 675);
             this.Name = "SignInList";
             this.Text = "Member Sign-Ins";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SignInList_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SignInList_FormClosed);
             this.Load += new System.EventHandler(this.SignInList_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SignInList_KeyPress);
@@ -906,10 +955,10 @@ namespace SAR_Sign_In_Assist
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numOperationalPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picICAConnection)).EndInit();
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
-            this.splitContainer3.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -950,7 +999,6 @@ namespace SAR_Sign_In_Assist
         private System.Windows.Forms.DateTimePicker datFromDate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSendSelected;
-        private System.Windows.Forms.Button btnRequestUpdates;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem editSignInRecordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sendSignInRecordToolStripMenuItem;
@@ -976,7 +1024,7 @@ namespace SAR_Sign_In_Assist
         private System.Windows.Forms.ToolStripMenuItem exportDisplayedRecordsToCSVToolStripMenuItem;
         private System.Windows.Forms.PictureBox picICAConnection;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.CheckBox chkRopeRescue;
+        private System.Windows.Forms.CheckBox chkAutoSendToICA;
         private System.Windows.Forms.ToolStripMenuItem networkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem networkSettingsToolStripMenuItem;
         private System.Windows.Forms.Button btnStatusByActivity;
@@ -985,7 +1033,12 @@ namespace SAR_Sign_In_Assist
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSignInTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTimeOutRequest;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.FolderBrowserDialog fbdSaveLocation;
+        private System.Windows.Forms.ToolStripMenuItem sendNetworkTestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem statusByActivityToolStripMenuItem;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown numOperationalPeriod;
+        private System.Windows.Forms.ToolStripMenuItem requestTaskFromServerToolStripMenuItem;
     }
 }

@@ -16,6 +16,12 @@ namespace SAR_Sign_In_Assist
 {
     public partial class MemberStatusByActivityForm : Form
     {
+
+        public event EventHandler MemberStatusByActivityForm_ListUpdated;
+
+
+        public int OpPeriod { get => (int)numOperationalPeriod.Value; set => numOperationalPeriod.Value = value; }
+
         public MemberStatusByActivityForm()
         {
             InitializeComponent();
@@ -43,6 +49,7 @@ namespace SAR_Sign_In_Assist
                 dgvMembersOnTask.DataSource = statuses;
 
             }
+            MemberStatusByActivityForm_ListUpdated?.Invoke(this, EventArgs.Empty);
         }
 
         private void dgvMembersOnTask_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -119,6 +126,11 @@ namespace SAR_Sign_In_Assist
                             newRecord.ActivityName = act.ActivityName;
                             if (act.EndDate < newRecord.StatusChangeTime) { act.EndDate = newRecord.StatusChangeTime; }
                             Program.signInListService.UpsertSignInRecord(newRecord);
+                            if (Program.AutomaticallySendToICA && Program.ThisMachineIsClient)
+                            {
+                                SignInRecord sir = newRecord.AsSignInRecord();
+                                Program.networkService.SendNetworkObject(sir);
+                            }
                         }
                     }
                 }
@@ -237,8 +249,27 @@ namespace SAR_Sign_In_Assist
             using (SignInMemberForm signInMemberForm = new SignInMemberForm())
             {
                 signInMemberForm.ActivityName = act.ActivityName;
+                signInMemberForm.OpPeriod = (int)numOperationalPeriod.Value;
                 DialogResult dr = signInMemberForm.ShowDialog(this);
-                if (dr == DialogResult.OK) { updateStatusList(); }
+                if (dr == DialogResult.OK)
+                {
+                    if(signInMemberForm.Record.StatusChangeTime > act.EndDate)
+                    {
+                        act.EndDate = signInMemberForm.Record.StatusChangeTime;
+                    }
+                    else if (signInMemberForm.Record.StatusChangeTime < act.StartDate)
+                    {
+                        act.StartDate = signInMemberForm.Record.StatusChangeTime;
+                    }
+
+                    updateStatusList();
+                    if (Program.AutomaticallySendToICA && Program.ThisMachineIsClient)
+                    {
+                        GeneralSignInRecord rec = signInMemberForm.Record;
+                        SignInRecord sir = rec.AsSignInRecord();
+                        Program.networkService.SendNetworkObject(sir);
+                    }
+                }
             }
         }
 
@@ -257,6 +288,14 @@ namespace SAR_Sign_In_Assist
                 if (result == DialogResult.OK)
                 {
                     updateStatusList();
+                    if (Program.AutomaticallySendToICA && Program.ThisMachineIsClient)
+                    {
+                        foreach (GeneralSignInRecord rec in bulkForm.recordsCreated)
+                        {
+                            SignInRecord sir = rec.AsSignInRecord();
+                            Program.networkService.SendNetworkObject(sir);
+                        }
+                    }
                 }
             }
         }

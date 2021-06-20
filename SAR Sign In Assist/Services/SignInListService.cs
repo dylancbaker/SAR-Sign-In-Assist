@@ -142,7 +142,7 @@ namespace SAR_Sign_In_Assist.Services
 
                         for (int x = 1; x < recordsThisActivity.Count; x++)
                         {
-                            TimeSpan gap = fromTheseRecords[x].StatusChangeTime - fromTheseRecords[x - 1].StatusChangeTime;
+                            TimeSpan gap = recordsThisActivity[x].StatusChangeTime - recordsThisActivity[x - 1].StatusChangeTime;
                             if (gap.TotalDays >= 3)
                             {
                                 DateTime endOfLastIteration = DateTime.MinValue;
@@ -153,7 +153,7 @@ namespace SAR_Sign_In_Assist.Services
 
                                 Activity a = new Activity();
                                 a.ActivityName = recordsThisActivity[x - 1].ActivityName;
-                                a.StartDate = fromTheseRecords.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase) && o.StatusChangeTime > endOfLastIteration).Min(o => o.StatusChangeTime);
+                                a.StartDate = recordsThisActivity.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase) && o.StatusChangeTime > endOfLastIteration).Min(o => o.StatusChangeTime);
                                 a.EndDate = recordsThisActivity[x - 1].StatusChangeTime;
                                 activities.Add(a);
                             }
@@ -171,7 +171,7 @@ namespace SAR_Sign_In_Assist.Services
 
                             Activity a = new Activity();
                             a.ActivityName = recordsThisActivity.Last().ActivityName;
-                            a.StartDate = fromTheseRecords.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase) && o.StatusChangeTime > endOfLastIteration).Min(o => o.StatusChangeTime);
+                            a.StartDate = recordsThisActivity.Where(o => !string.IsNullOrEmpty(o.ActivityName) && o.ActivityName.Equals(s, StringComparison.InvariantCultureIgnoreCase) && o.StatusChangeTime > endOfLastIteration).Min(o => o.StatusChangeTime);
                             a.EndDate = recordsThisActivity.Last().StatusChangeTime;
                             activities.Add(a);
                         }
@@ -428,7 +428,7 @@ namespace SAR_Sign_In_Assist.Services
             if (string.IsNullOrEmpty(fileName)) { fileName = _SaveFileName; }
 
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SAR ICS Form Helper");
-
+            path = Path.Combine(path, "SAR Sign-In Assist");
 
 
             XmlSerializer mySerializer = new XmlSerializer(typeof(List<GeneralSignInRecord>));

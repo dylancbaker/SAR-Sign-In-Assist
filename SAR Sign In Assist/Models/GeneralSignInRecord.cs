@@ -23,7 +23,22 @@ namespace SAR_Sign_In_Assist.Models
             SignInRecordID = Guid.NewGuid();
             teamMember = new TeamMember();
             Active = true;
+            OpPeriod = 1; //DEBUG - Remove this later, ICA should either be given a proper op period, or else be able to handle OpPeriod 0
         }
+
+        public GeneralSignInRecord(SignInRecord record)
+        {
+            StatusChangeTime = record.StatusChangeTime;
+            MemberID = record.MemberID;
+            OpPeriod = record.OpPeriod;
+            SignInRecordID = record.SignInRecordID;
+            teamMember = record.teamMember;
+            IsSignIn = record.IsSignIn;
+            KMs = record.KMs;
+            TimeOutRequest = record.TimeOutRequest;
+            Active = true;
+        }
+
 
         public bool Active { get => _Active; set => _Active = value; }
         public string ActivityName { get => _ActivityName; set => _ActivityName = value; }
@@ -41,5 +56,18 @@ namespace SAR_Sign_In_Assist.Models
             }
         }
 
+        public SignInRecord AsSignInRecord()
+        {
+            SignInRecord record = new SignInRecord();
+            record.StatusChangeTime = StatusChangeTime;
+            record.MemberID = MemberID;
+            record.OpPeriod = OpPeriod;
+            record.SignInRecordID = SignInRecordID;
+            record.teamMember = teamMember;
+            record.IsSignIn = IsSignIn;
+            record.KMs = KMs;
+            record.TimeOutRequest = TimeOutRequest;
+            return record;
+        }
     }
 }

@@ -16,9 +16,12 @@ namespace SAR_Sign_In_Assist
     public partial class SignInMemberForm : Form
     {
         private SignInMemberViewModel _viewModel = null;
-        private SignInList _parent = null;
         TeamMember CurrentMember { get => _viewModel.CurrentMember; set => _viewModel.CurrentMember = value; }
         public string ActivityName { get => _viewModel.ActivityName; set { _viewModel.ActivityName = value; txtCurrentActivity.Text = value; } }
+        public int OpPeriod { get => _viewModel.OpPeriod; set => _viewModel.OpPeriod = value; }
+        public GeneralSignInRecord Record { get => _viewModel.record; }  //used to retrieve the newly created record in order to send it via the network.
+
+
 
         public SignInMemberForm()
         {
@@ -32,10 +35,6 @@ namespace SAR_Sign_In_Assist
 
         private void SignInMemberForm_Load(object sender, EventArgs e)
         {
-            if (_parent == null)
-            {
-                _parent = (SignInList)this.Owner;
-            }
 
             cboSARGroup.DataSource = _viewModel.GetOrganizations();
             cboSARGroup.SelectedValue = _viewModel.SavedOrganizationID;

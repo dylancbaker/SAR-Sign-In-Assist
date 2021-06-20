@@ -15,13 +15,16 @@ namespace SAR_Sign_In_Assist.ViewModels
         private string _ActivityName;
         private DateTime _SignInTime;
         private DateTime _MustBeOutTime;
+        private int _OpPeriod;
         private bool _UseMustBeOut;
-
+        private GeneralSignInRecord _record = new GeneralSignInRecord();
         public TeamMember CurrentMember { get => _currentMember; set => _currentMember = value; }
         public string ActivityName { get => _ActivityName; set => _ActivityName = value; }
         public DateTime SignInTime { get => _SignInTime; set => _SignInTime = value; }
         public DateTime MustBeOutTime { get => _MustBeOutTime; set => _MustBeOutTime = value; }
         public bool UseMustBeOut { get => _UseMustBeOut; set => _UseMustBeOut = value; }
+        public int OpPeriod { get => _OpPeriod; set => _OpPeriod = value; }
+        public GeneralSignInRecord record { get => _record; private set => _record = value; }
 
         public SignInMemberViewModel()
         {
@@ -37,6 +40,7 @@ namespace SAR_Sign_In_Assist.ViewModels
             {
                 members = members.Where(o => o.OrganizationID == OrganizationID).ToList();
             }
+            members = members.OrderBy(o => o.Name).ToList();
             return members;
         }
         public List<Organization> GetOrganizations()
@@ -62,11 +66,12 @@ namespace SAR_Sign_In_Assist.ViewModels
             bool saveSuccessful = false;
             try
             {
-                GeneralSignInRecord record = new GeneralSignInRecord();
+                
                 record.Active = true;
                 record.ActivityName = ActivityName;
                 record.MemberID = CurrentMember.PersonID;
                 record.StatusChangeTime = SignInTime;
+                record.OpPeriod = OpPeriod;
 
                 if (UseMustBeOut && MustBeOutTime > DateTime.MinValue)
                 {

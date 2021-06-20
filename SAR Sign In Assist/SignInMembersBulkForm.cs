@@ -16,6 +16,9 @@ namespace SAR_Sign_In_Assist
     {
         SignInList parent = null;
         public string ActivityName { get => txtCurrentActivity.Text; set => txtCurrentActivity.Text = value; }
+        private List<GeneralSignInRecord> _recordsCreated = new List<GeneralSignInRecord>();
+        public List<GeneralSignInRecord> recordsCreated { get => _recordsCreated; set => _recordsCreated = value; }
+
         public SignInMembersBulkForm()
         {
             InitializeComponent();
@@ -91,7 +94,7 @@ namespace SAR_Sign_In_Assist
                 record.Active = true;
                 record.teamMember = member;
                 Program.signInListService.UpsertSignInRecord(record);
-
+                recordsCreated.Add(record);
                 //CurrentTask.AllSignInRecords.Add(record);
                 //parent.SendNetworkObject(record);
                 //if (!CurrentTask.TaskTeamMembers.Where(o => o.PersonID == member.PersonID).Any()) { CurrentTask.TaskTeamMembers.Add(member); }
