@@ -109,7 +109,16 @@ namespace SAR_Sign_In_Assist
 
                         foreach (MemberStatus status in statuses)
                         {
+
+
                             GeneralSignInRecord newRecord = new GeneralSignInRecord();
+
+                            //need to get the original sign in record to retrieve the op period from it
+                            List<GeneralSignInRecord> signInRecords = Program.signInListService.GetSignInRecords(status.SignInTime.AddSeconds(-2), status.SignInTime.AddSeconds(2), false, true, Guid.Empty, act.ActivityName);
+                            if (signInRecords.Any())
+                            {
+                                newRecord.OpPeriod = signInRecords.First().OpPeriod;
+                            }
 
                             if (members.Any(o => o.PersonID == status.MemberID))
                             {
@@ -123,6 +132,8 @@ namespace SAR_Sign_In_Assist
                                 newRecord.KMs = signOutForm.KMs;
                             }
                             newRecord.Active = true;
+
+
                             newRecord.ActivityName = act.ActivityName;
                             if (act.EndDate < newRecord.StatusChangeTime) { act.EndDate = newRecord.StatusChangeTime; }
                             Program.signInListService.UpsertSignInRecord(newRecord);
@@ -134,10 +145,11 @@ namespace SAR_Sign_In_Assist
                         }
                     }
                 }
-
-                updateStatusList();
             }
+
+            updateStatusList();
         }
+    
 
         private void btnSignOut_Click(object sender, EventArgs e)
         {
@@ -284,6 +296,7 @@ namespace SAR_Sign_In_Assist
             using (SignInMembersBulkForm bulkForm = new SignInMembersBulkForm())
             {
                 bulkForm.ActivityName = act.ActivityName;
+                bulkForm.OpPeriod = OpPeriod;
                 DialogResult result = bulkForm.ShowDialog(this);
                 if (result == DialogResult.OK)
                 {

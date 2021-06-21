@@ -183,6 +183,8 @@ namespace SAR_Sign_In_Assist.Services
                 }
                 networkSendObject.RequestID = Guid.NewGuid();
                 networkSendObject.objectType = objToSend.GetType().ToString();
+                //for 6.13 support
+                networkSendObject.objectType = networkSendObject.objectType.Replace(".Models", "");
                 networkSendObject.SourceName = HostInfo.HostName;
                 networkSendObject.SourceIdentifier = NetworkComms.NetworkIdentifier;
                 networkSendObject.comment = comment;

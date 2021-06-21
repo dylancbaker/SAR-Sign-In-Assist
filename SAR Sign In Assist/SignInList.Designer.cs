@@ -30,9 +30,8 @@ namespace SAR_Sign_In_Assist
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignInList));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,11 +56,6 @@ namespace SAR_Sign_In_Assist
             this.checkForAppUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutSARSignInAssistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvSignInRecords = new System.Windows.Forms.DataGridView();
-            this.colActivityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSignInTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTimeOutRequest = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editSignInRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendSignInRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,6 +99,11 @@ namespace SAR_Sign_In_Assist
             this.btnSendSelected = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.fbdSaveLocation = new System.Windows.Forms.FolderBrowserDialog();
+            this.colActivityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSignInTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTimeOutRequest = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSignInRecords)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -334,54 +333,6 @@ namespace SAR_Sign_In_Assist
             this.dgvSignInRecords.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSignInRecords_CellDoubleClick);
             this.dgvSignInRecords.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSignInRecords_CellFormatting);
             this.dgvSignInRecords.SelectionChanged += new System.EventHandler(this.dgvSignInRecords_SelectionChanged);
-            // 
-            // colActivityName
-            // 
-            this.colActivityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colActivityName.DataPropertyName = "ActivityName";
-            this.colActivityName.HeaderText = "Activity";
-            this.colActivityName.Name = "colActivityName";
-            this.colActivityName.ReadOnly = true;
-            this.colActivityName.Width = 92;
-            // 
-            // colGroup
-            // 
-            this.colGroup.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colGroup.DataPropertyName = "GroupName";
-            this.colGroup.HeaderText = "SAR Group";
-            this.colGroup.Name = "colGroup";
-            this.colGroup.ReadOnly = true;
-            this.colGroup.Width = 120;
-            // 
-            // colName
-            // 
-            this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colName.DataPropertyName = "MemberName";
-            this.colName.HeaderText = "Name";
-            this.colName.MinimumWidth = 150;
-            this.colName.Name = "colName";
-            this.colName.ReadOnly = true;
-            // 
-            // colSignInTime
-            // 
-            this.colSignInTime.DataPropertyName = "SignInTime";
-            dataGridViewCellStyle7.Format = "yyyy-MMM-dd HH:mm";
-            dataGridViewCellStyle7.NullValue = "00:00";
-            this.colSignInTime.DefaultCellStyle = dataGridViewCellStyle7;
-            this.colSignInTime.HeaderText = "Sign In/Out Time";
-            this.colSignInTime.Name = "colSignInTime";
-            this.colSignInTime.ReadOnly = true;
-            this.colSignInTime.Width = 220;
-            // 
-            // colTimeOutRequest
-            // 
-            this.colTimeOutRequest.DataPropertyName = "MustBeOutTimeOrBlank";
-            dataGridViewCellStyle8.NullValue = null;
-            this.colTimeOutRequest.DefaultCellStyle = dataGridViewCellStyle8;
-            this.colTimeOutRequest.HeaderText = "Must Be Out";
-            this.colTimeOutRequest.Name = "colTimeOutRequest";
-            this.colTimeOutRequest.ReadOnly = true;
-            this.colTimeOutRequest.Width = 140;
             // 
             // contextMenuStrip1
             // 
@@ -919,6 +870,51 @@ namespace SAR_Sign_In_Assist
             this.saveFileDialog1.DefaultExt = "csv";
             this.saveFileDialog1.Filter = "CSV Files (*.CSV)|*.csv";
             // 
+            // colActivityName
+            // 
+            this.colActivityName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colActivityName.DataPropertyName = "ActivityName";
+            this.colActivityName.HeaderText = "Activity";
+            this.colActivityName.Name = "colActivityName";
+            this.colActivityName.ReadOnly = true;
+            this.colActivityName.Width = 92;
+            // 
+            // colGroup
+            // 
+            this.colGroup.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colGroup.DataPropertyName = "GroupName";
+            this.colGroup.HeaderText = "SAR Group";
+            this.colGroup.Name = "colGroup";
+            this.colGroup.ReadOnly = true;
+            this.colGroup.Width = 131;
+            // 
+            // colName
+            // 
+            this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colName.DataPropertyName = "MemberName";
+            this.colName.HeaderText = "Name";
+            this.colName.MinimumWidth = 150;
+            this.colName.Name = "colName";
+            this.colName.ReadOnly = true;
+            // 
+            // colSignInTime
+            // 
+            this.colSignInTime.DataPropertyName = "StatusChangeTimeWithDirection";
+            this.colSignInTime.HeaderText = "Sign In/Out Time";
+            this.colSignInTime.Name = "colSignInTime";
+            this.colSignInTime.ReadOnly = true;
+            this.colSignInTime.Width = 220;
+            // 
+            // colTimeOutRequest
+            // 
+            this.colTimeOutRequest.DataPropertyName = "MustBeOutTimeOrBlank";
+            dataGridViewCellStyle1.NullValue = null;
+            this.colTimeOutRequest.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colTimeOutRequest.HeaderText = "Must Be Out";
+            this.colTimeOutRequest.Name = "colTimeOutRequest";
+            this.colTimeOutRequest.ReadOnly = true;
+            this.colTimeOutRequest.Width = 140;
+            // 
             // SignInList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -1028,11 +1024,6 @@ namespace SAR_Sign_In_Assist
         private System.Windows.Forms.ToolStripMenuItem networkToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem networkSettingsToolStripMenuItem;
         private System.Windows.Forms.Button btnStatusByActivity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colActivityName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colGroup;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSignInTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTimeOutRequest;
         private System.Windows.Forms.FolderBrowserDialog fbdSaveLocation;
         private System.Windows.Forms.ToolStripMenuItem sendNetworkTestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
@@ -1040,5 +1031,10 @@ namespace SAR_Sign_In_Assist
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numOperationalPeriod;
         private System.Windows.Forms.ToolStripMenuItem requestTaskFromServerToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colActivityName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGroup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSignInTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTimeOutRequest;
     }
 }

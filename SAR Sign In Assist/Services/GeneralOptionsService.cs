@@ -88,6 +88,14 @@ namespace SAR_Sign_In_Assist.Services
                     if (_options.DefaultPortNumber <= 0) { _options.DefaultPortNumber = 42999; }
                     _options.OptionsLoadedSuccessfully = true;
 
+                } else
+                {
+                    //create new general options and save it
+                    _options = new GeneralOptions();
+                    _options.DefaultPortNumber = 42999;
+                    SaveGeneralOptions(_options);
+                    _options.OptionsLoadedSuccessfully = true;
+
                 }
             }
             catch (Exception)

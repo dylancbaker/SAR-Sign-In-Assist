@@ -37,7 +37,12 @@ namespace SAR_Sign_In_Assist
         {
 
             cboSARGroup.DataSource = _viewModel.GetOrganizations();
-            cboSARGroup.SelectedValue = _viewModel.SavedOrganizationID;
+            cboSARGroup.DisplayMember = "OrganizationName";
+            cboSARGroup.ValueMember = "OrganizationID";
+            if (_viewModel.SavedOrganizationID != Guid.Empty)
+            {
+                cboSARGroup.SelectedValue = _viewModel.SavedOrganizationID;
+            }
             editTeamMemberForm1.CurrentMember = new ICAClassLibrary.Models.TeamMember();
             rbExistingMember.Checked = cboExistingMembers.Items.Count > 0;
             datSignInTime.Value = DateTime.Now;
@@ -48,7 +53,10 @@ namespace SAR_Sign_In_Assist
         private void cboSARGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             Organization org = (Organization)cboSARGroup.SelectedItem;
-            cboExistingMembers.DataSource = _viewModel.GetTeamMembers(org.OrganizationID);
+            if (org != null && org.OrganizationID != Guid.Empty)
+            {
+                cboExistingMembers.DataSource = _viewModel.GetTeamMembers(org.OrganizationID);
+            }
         }
 
       

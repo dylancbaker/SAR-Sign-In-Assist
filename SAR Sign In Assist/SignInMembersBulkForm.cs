@@ -18,6 +18,8 @@ namespace SAR_Sign_In_Assist
         public string ActivityName { get => txtCurrentActivity.Text; set => txtCurrentActivity.Text = value; }
         private List<GeneralSignInRecord> _recordsCreated = new List<GeneralSignInRecord>();
         public List<GeneralSignInRecord> recordsCreated { get => _recordsCreated; set => _recordsCreated = value; }
+        private int _OpPeriod;
+        public int OpPeriod { get => _OpPeriod; set => _OpPeriod = value; }
 
         public SignInMembersBulkForm()
         {
@@ -90,6 +92,7 @@ namespace SAR_Sign_In_Assist
                 record.StatusChangeTime = datExistingMember.Value;
                 record.MemberID = member.PersonID;
                 record.IsSignIn = true;
+                record.OpPeriod = OpPeriod;
                 record.ActivityName = txtCurrentActivity.Text;
                 record.Active = true;
                 record.teamMember = member;

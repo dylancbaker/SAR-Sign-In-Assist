@@ -23,7 +23,7 @@ namespace SAR_Sign_In_Assist.Models
             SignInRecordID = Guid.NewGuid();
             teamMember = new TeamMember();
             Active = true;
-            OpPeriod = 1; //DEBUG - Remove this later, ICA should either be given a proper op period, or else be able to handle OpPeriod 0
+           // OpPeriod = 1; //DEBUG - Remove this later, ICA should either be given a proper op period, or else be able to handle OpPeriod 0
         }
 
         public GeneralSignInRecord(SignInRecord record)
@@ -53,6 +53,22 @@ namespace SAR_Sign_In_Assist.Models
                     return TimeOutRequest.ToString("HH:mm");
                 }
                 else { return null; }
+            }
+        }
+
+        public string StatusChangeTimeWithDirection
+        {
+            get { return GetStatusChangeTimeWithDirection(); }
+        }
+
+        public string GetStatusChangeTimeWithDirection(string format = "yyyy-MMM-dd HH:mm")
+        {
+            if (IsSignIn)
+            {
+                return StatusChangeTime.ToString(format) + " (in)";
+            } else
+            {
+                return StatusChangeTime.ToString(format) + " (out)";
             }
         }
 

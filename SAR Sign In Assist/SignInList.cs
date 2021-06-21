@@ -93,7 +93,7 @@ namespace SAR_Sign_In_Assist
         private void updateSignInList()
         {
             dgvSignInRecords.AutoGenerateColumns = false;
-            DateTime endDate = DateTime.Now;
+            DateTime endDate = DateTime.Now.AddMinutes(1);
             DateTime startDate = endDate.AddHours(-24);
 
             if (rbFromDate.Checked) { startDate = datFromDate.Value; }
@@ -462,6 +462,7 @@ namespace SAR_Sign_In_Assist
             using (SignInMembersBulkForm bulkForm = new SignInMembersBulkForm())
             {
                 bulkForm.ActivityName = txtCurrentActivity.Text;
+                bulkForm.OpPeriod = (int)numOperationalPeriod.Value;
                 DialogResult result = bulkForm.ShowDialog(this);
                 if (result == DialogResult.OK)
                 {
@@ -667,6 +668,8 @@ namespace SAR_Sign_In_Assist
                             GeneralSignInRecord newRecord = new GeneralSignInRecord();
                             newRecord.teamMember = record.teamMember;
                             newRecord.StatusChangeTime = signOutForm.SignOutTime;
+                            newRecord.OpPeriod = record.OpPeriod;
+
                             if (signOutForm.KMsEnabled)
                             {
                                 newRecord.KMs = signOutForm.KMs;
@@ -1287,9 +1290,15 @@ namespace SAR_Sign_In_Assist
                 if (acceptInfo)
                 {
                     DateTime today = DateTime.Now;
+
+                    string SixOneThreeName = incomingMessage.objectType;
+                    if (!SixOneThreeName.Contains(".Models")) { SixOneThreeName = SixOneThreeName.Replace("ICAClassLibrary.", "ICAClassLibrary.Models."); }
+
+
+
                     //addToNetworkLog(string.Format("{0:HH:mm:ss}", today) + " - received incoming item: " + incomingMessage.objectType + "\r\n");
 
-                    if (incomingMessage.objectType == new SignInRecord().GetType().ToString())
+                    if (incomingMessage.objectType == new SignInRecord().GetType().ToString() || SixOneThreeName == new SignInRecord().GetType().ToString())
                     {
                         appendSignInRecord(incomingMessage.signInRecord);
                     }
@@ -1366,8 +1375,14 @@ namespace SAR_Sign_In_Assist
                 else
                 {
                    Program.ThisMachineIsClient = false;
-                    chkAutoSendToICA.Checked = false;
+                    this.BeginInvoke((Action)delegate ()
+                    {
+                        chkAutoSendToICA.Checked = false;
+                        txtCurrentActivity.Text = DateTime.Now.ToString("yyyy-MMM-dd") + " General";
+                    });
+                   
                     setNetworkStatusImage();
+
                 }
             }
         }
@@ -1426,7 +1441,10 @@ namespace SAR_Sign_In_Assist
                     lastPeerSarTaskDict.Add(incomingMessage.SourceIdentifier, incomingMessage);
                     this.BeginInvoke((Action)delegate ()
                     {
-                        txtCurrentActivity.Text = incomingMessage.TaskNumber.ToString();
+                        if (incomingMessage != null && incomingMessage.TaskNumber != null)
+                        {
+                            txtCurrentActivity.Text = incomingMessage.TaskNumber.ToString();
+                        }
                     });
                     //replaceCurrentTaskWithNetworkTask(incomingMessage);
                     //AppendLineTotxtChat(incomingMessage.SourceName + " - " + incomingMessage.Message);
